@@ -55,7 +55,7 @@ Bangkit Capstone Team ID: C242-PS195
 ]
 ```
 
-### 2. Recommendation by User's Location
+### 2. Recommendation by Location Chosen
 
 #### Request
 
