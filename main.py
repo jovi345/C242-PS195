@@ -1,4 +1,5 @@
 from flask import jsonify, request, Flask
+from flask_cors import CORS
 
 from db_connection import get_connection
 from first_model_handler import recommend_place, data, first_model, tfidf
@@ -7,6 +8,7 @@ import random
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/api/destination/recommendation", methods=["POST"])
