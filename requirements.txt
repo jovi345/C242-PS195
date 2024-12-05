@@ -4,3 +4,4 @@ scikit-learn
 flask
 python-dotenv
 mysql-connector-python
+flask-cors
