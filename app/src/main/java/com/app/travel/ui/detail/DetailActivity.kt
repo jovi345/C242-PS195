@@ -6,11 +6,13 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.HtmlCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.app.travel.R
 import com.app.travel.data.repo.Injection
+import com.app.travel.databinding.ActivityDetailBinding
 import com.app.travel.ui.ViewModelFactory
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
@@ -19,13 +21,14 @@ class DetailActivity() : AppCompatActivity() {
     private val detailViewModel: DetailViewModel by viewModels {
         DetailViewModelFactory(Injection.provideRepository(this))
     }
-
+    private lateinit var binding: ActivityDetailBinding
     private lateinit var id: String
     private lateinit var token: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         detailViewModel.logToken()
 
@@ -42,13 +45,17 @@ class DetailActivity() : AppCompatActivity() {
 
     private fun setupObserver() {
         detailViewModel.placeDetail.observe(this) { placeDetail ->
-            findViewById<TextView>(R.id.descTextView).text = placeDetail.description
-            findViewById<TextView>(R.id.ratingTextView).text = placeDetail.rating.toString()
-            findViewById<TextView>(R.id.categoryTextView).text = placeDetail.category
-            findViewById<TextView>(R.id.kotaTextView).text = placeDetail.city
+            binding.nameTextView.text = placeDetail.place_name
+            binding.provinsiTextView.text = placeDetail.state
+            binding.kotaTextView.text = placeDetail.city
+            binding.ratingTextView.text = placeDetail.rating.toString()
+            binding.categoryTextView.text = placeDetail.category
+            binding.descTextView.text = HtmlCompat.fromHtml(placeDetail.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
+
             Glide.with(this)
                 .load(placeDetail.image_url)
-                .into(findViewById<ImageView>(R.id.colorImageView))
+                .error(R.drawable.example_image)
+                .into(binding.previewImageView)
         }
     }
 }
