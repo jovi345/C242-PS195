@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!-- Preview Image -->
+
         <ImageView
             android:id="@+id/previewImageView"
             android:layout_width="0dp"
@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/example_image" />
 
-        <!-- Title Text -->
+
         <TextView
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toBottomOf="@id/previewImageView"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Province -->
+
         <TextView
             android:id="@+id/provinsiTextView"
             android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toBottomOf="@id/nameTextView"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- City -->
+
         <TextView
             android:id="@+id/kotaTextView"
             android:layout_width="wrap_content"
@@ -59,7 +59,6 @@
             app:layout_constraintTop_toBottomOf="@id/provinsiTextView"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Icon and Category -->
         <ImageView
             android:id="@+id/colorImageView"
             android:layout_width="24dp"
@@ -79,7 +78,7 @@
             app:layout_constraintStart_toEndOf="@id/colorImageView"
             app:layout_constraintTop_toTopOf="@id/colorImageView" />
 
-        <!-- Rating Section -->
+
         <ImageView
             android:id="@+id/ratingImageView"
             android:layout_width="24dp"
@@ -99,7 +98,7 @@
             app:layout_constraintStart_toEndOf="@id/ratingImageView"
             app:layout_constraintTop_toTopOf="@id/ratingImageView" />
 
-        <!-- Description -->
+
         <TextView
             android:id="@+id/descTextView"
             android:layout_width="0dp"
@@ -112,7 +111,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Buy Button -->
+
         <Button
             android:id="@+id/locationButton"
             android:layout_width="0dp"
@@ -125,12 +124,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Floating Action Button -->
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_favorite_border_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
