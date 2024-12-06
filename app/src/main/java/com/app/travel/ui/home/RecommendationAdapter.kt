@@ -9,8 +9,9 @@ import com.app.travel.data.response.RecommendationResponse
 import com.app.travel.databinding.ItemRecomendationRowBinding
 import com.bumptech.glide.Glide
 
-class RecommendationAdapter(private var recommendations: List<RecommendationResponse?>) :
-    RecyclerView.Adapter<RecommendationAdapter.RecommendationViewHolder>() {
+class RecommendationAdapter(private var recommendations: List<RecommendationResponse?>,
+                            private val onItemClick: (String) -> Unit
+    ) : RecyclerView.Adapter<RecommendationAdapter.RecommendationViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecommendationViewHolder {
         val binding = ItemRecomendationRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,7 +31,7 @@ class RecommendationAdapter(private var recommendations: List<RecommendationResp
         notifyDataSetChanged()
     }
 
-    class RecommendationViewHolder(private val binding: ItemRecomendationRowBinding) :
+    inner class RecommendationViewHolder(private val binding: ItemRecomendationRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(recommendation: RecommendationResponse) {
             Glide.with(binding.root)
@@ -41,7 +42,10 @@ class RecommendationAdapter(private var recommendations: List<RecommendationResp
             binding.textViewDescription.text = recommendation.description
             binding.textViewCity.text = recommendation.city
             binding.textViewCategory.text = recommendation.category
-            // Bind other views as needed
+
+            itemView.setOnClickListener {
+                onItemClick(recommendation.id.toString())
+            }
         }
     }
 }

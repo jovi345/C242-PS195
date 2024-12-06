@@ -3,9 +3,12 @@ package com.app.travel.data.repo
 import com.app.travel.data.pref.UserModel
 import com.app.travel.data.pref.UserPreference
 import com.app.travel.data.response.LoginResponse
+import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RegisterResponse
 import com.app.travel.data.retrofit.ApiService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
@@ -13,6 +16,12 @@ class UserRepository private constructor(
 ){
     suspend fun register(username: String, email: String, password: String, confirmPassword: String, userLocation: String) : RegisterResponse {
         return apiService.register(username, email, password, confirmPassword, userLocation)
+    }
+
+    suspend fun getPlaceDetail(id: String, token: String): PlaceDetailResponse {
+        return withContext(Dispatchers.IO) {
+            apiService.getPlaceDetail(id, "Bearer $token")
+        }
     }
 
     suspend fun login(email: String, password: String) : LoginResponse {

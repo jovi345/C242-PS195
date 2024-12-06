@@ -17,17 +17,6 @@
         app:srcCompat="@drawable/example_image" />
 
     <ImageView
-        android:id="@+id/colorImageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/colorTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/space1"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
-        app:srcCompat="@drawable/ic_category_24" />
-
-    <ImageView
         android:id="@+id/ratingImageView"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -36,16 +25,6 @@
         app:layout_constraintStart_toEndOf="@+id/space2"
         app:layout_constraintTop_toTopOf="@+id/colorImageView"
         app:srcCompat="@drawable/ic_star_border_24" />
-
-    <ImageView
-        android:id="@+id/sizeImageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/sizeTextView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/space4"
-        app:layout_constraintTop_toTopOf="@+id/ratingImageView" />
-
 
 
     <TextView
@@ -64,29 +43,29 @@
         app:layout_constraintTop_toBottomOf="@+id/previewImageView" />
 
     <TextView
-        android:id="@+id/storeTextView"
+        android:id="@+id/provinsiTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/kota"
+        android:text="@string/provinsi"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/nameTextView"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
     <TextView
-        android:id="@+id/dateTextView"
+        android:id="@+id/kotaTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:text="@string/daerah"
         android:textSize="12sp"
         android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="@+id/storeTextView"
-        app:layout_constraintTop_toBottomOf="@+id/storeTextView" />
+        app:layout_constraintStart_toStartOf="@+id/provinsiTextView"
+        app:layout_constraintTop_toBottomOf="@+id/provinsiTextView" />
 
     <TextView
-        android:id="@+id/colorTextView"
+        android:id="@+id/categoryTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -114,22 +93,18 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ratingImageView"
         app:layout_constraintTop_toTopOf="@+id/ratingImageView"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintVertical_bias="0.454" />
 
-    <TextView
-        android:id="@+id/sizeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="sans-serif-light"
-        android:text="@string/review"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/sizeImageView"
-        app:layout_constraintEnd_toStartOf="@+id/space3"
+    <ImageView
+        android:id="@+id/colorImageView"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/categoryTextView"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/sizeImageView"
-        app:layout_constraintTop_toTopOf="@+id/sizeImageView" />
+        app:layout_constraintStart_toStartOf="@+id/kotaTextView"
+        app:layout_constraintTop_toBottomOf="@+id/kotaTextView"
+        app:srcCompat="@drawable/ic_category_24" />
 
     <TextView
         android:id="@+id/descTextView"
@@ -180,38 +155,29 @@
         app:layout_constraintBottom_toBottomOf="@+id/ratingImageView"
         app:layout_constraintEnd_toStartOf="@+id/ratingImageView"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/colorTextView"
+        app:layout_constraintStart_toEndOf="@+id/categoryTextView"
         app:layout_constraintTop_toTopOf="@+id/ratingImageView" />
 
-    <Space
-        android:id="@+id/space3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/sizeImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/sizeTextView"
-        app:layout_constraintTop_toTopOf="@+id/sizeImageView" />
+
 
     <Space
         android:id="@+id/space4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/ratingImageView"
-        app:layout_constraintEnd_toStartOf="@+id/sizeImageView"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ratingTextView"
         app:layout_constraintTop_toTopOf="@+id/ratingImageView" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/settingImageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_favorite_border_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorite_border_24" />
+        app:layout_constraintVertical_bias="0.405" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

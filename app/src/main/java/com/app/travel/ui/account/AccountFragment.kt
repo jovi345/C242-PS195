@@ -26,8 +26,9 @@ class AccountFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_account, container, false)
 
-        val logoutButton: MaterialButton = requireView().findViewById(R.id.logoutButton)
+        val logoutButton: MaterialButton = view.findViewById(R.id.logoutButton)
         logoutButton.setOnClickListener {
             loginViewModel.logout()
             val intent = Intent(requireContext(), LoginActivity::class.java)
@@ -36,7 +37,7 @@ class AccountFragment : Fragment() {
         }
 
 
-        return inflater.inflate(R.layout.fragment_account, container, false)
+        return view
 
     }
 

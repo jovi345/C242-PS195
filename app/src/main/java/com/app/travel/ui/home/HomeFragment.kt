@@ -1,5 +1,6 @@
 package com.app.travel.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.travel.R
+import com.app.travel.data.repo.Injection
 import com.app.travel.databinding.FragmentHomeBinding
 import com.app.travel.ui.auth.register.CustomArrayAdapter
+import com.app.travel.ui.detail.DetailActivity
 import java.util.Locale
 
 class HomeFragment : Fragment() {
@@ -29,8 +32,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val repository = Injection.provideRepository(requireContext())
+        val homeViewModel = ViewModelProvider(this, HomeViewModelFactory(repository)).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -42,7 +45,11 @@ class HomeFragment : Fragment() {
         spinner.adapter = arrayAdapter
 
         val recyclerView = binding.rvRecomendation
-        val adapter = RecommendationAdapter(emptyList())
+        val adapter = RecommendationAdapter(emptyList()) { id ->
+            val intent = Intent(requireContext(), DetailActivity::class.java)
+            intent.putExtra("PLACE_ID", id)
+            startActivity(intent)
+        }
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
