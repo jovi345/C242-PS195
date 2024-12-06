@@ -7,6 +7,7 @@ import com.app.travel.data.repo.Injection
 import com.app.travel.data.repo.UserRepository
 import com.app.travel.ui.auth.login.LoginViewModel
 import com.app.travel.ui.auth.register.RegisterViewModel
+import com.app.travel.ui.home.HomeViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -19,7 +20,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
             }
-
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                HomeViewModel(repository) as T
+            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

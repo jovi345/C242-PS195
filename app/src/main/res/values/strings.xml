@@ -52,6 +52,7 @@
     <string name="akun">Welcome, User</string>
     <string name="dark_mode">Enable Dark Mode</string>
     <string name="provinsi">Provinsi</string>
+    <string name="welcome_back">Welcome Back!</string>
     <string-array name="cities_array">
         <item>Your Location</item>
         <item>Medan</item>

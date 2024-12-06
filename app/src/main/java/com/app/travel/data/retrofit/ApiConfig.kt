@@ -1,17 +1,28 @@
 package com.app.travel.data.retrofit
 
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
-    fun getApiService() : ApiService {
+    fun getApiService(token: String) : ApiService {
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
+        val authInterceptor = Interceptor { chain ->
+            val req = chain.request()
+            val builder = req.newBuilder()
+            if (token.isNotEmpty()) {
+                builder.addHeader("Authorization", "Bearer $token")
+            }
+            chain.proceed(builder.build())
+        }
+
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
             .build()
 
         val retrofit = Retrofit.Builder()

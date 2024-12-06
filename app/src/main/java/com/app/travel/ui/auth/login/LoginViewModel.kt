@@ -20,17 +20,20 @@ class LoginViewModel( private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    fun login(username: String, password: String) {
+    fun login(email: String, password: String) {
         _isLoading.value = true
         viewModelScope.launch {
             try {
-                val response = repository.login(username, password)
-                _loginResult.postValue(response.status?: "Login successful")
-                if (response.status == "Login successful") {
-                    response.loginResult?.let { user ->
-                        repository.saveSession(UserModel(user.email, user.token, true))
-                    }
+                val response = repository.login(email, password)
+                response.loginResult?.token?.let { token ->
+                    saveSession(UserModel(email, token, isLogin = true))
                 }
+                _loginResult.postValue(response.status?: "Login successful")
+//                if (response.status == "Login successful") {
+//                    response.loginResult?.let { user ->
+//                        repository.saveSession(UserModel(user.email, user.token, true))
+//                    }
+//                }
             } catch (e: HttpException) {
                 val errorMessage = e.response()?.errorBody()?.string()?.let { json ->
                     Gson().fromJson(json, ErrorResponse::class.java).message ?: "An error occurred"
