@@ -8,6 +8,7 @@ import com.app.travel.data.pref.UserModel
 import com.app.travel.data.repo.UserRepository
 import com.app.travel.data.response.ErrorResponse
 import com.google.gson.Gson
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -25,6 +26,11 @@ class LoginViewModel( private val repository: UserRepository) : ViewModel() {
             try {
                 val response = repository.login(username, password)
                 _loginResult.postValue(response.status?: "Login successful")
+                if (response.status == "Login successful") {
+                    response.loginResult?.let { user ->
+                        repository.saveSession(UserModel(user.email, user.token, true))
+                    }
+                }
             } catch (e: HttpException) {
                 val errorMessage = e.response()?.errorBody()?.string()?.let { json ->
                     Gson().fromJson(json, ErrorResponse::class.java).message ?: "An error occurred"
@@ -43,4 +49,13 @@ class LoginViewModel( private val repository: UserRepository) : ViewModel() {
             repository.saveSession(user)
             }
         }
+    fun getSession(): Flow<UserModel> {
+        return repository.getSession()
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            repository.logout()
+        }
+    }
 }

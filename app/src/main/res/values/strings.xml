@@ -49,6 +49,8 @@
     <string name="city_tag">City Tag</string>
     <string name="category">Category</string>
     <string name="recommended_for_you">Recommended for you</string>
+    <string name="akun">Welcome, User</string>
+    <string name="dark_mode">Enable Dark Mode</string>
     <string-array name="cities_array">
         <item>Your Location</item>
         <item>Medan</item>
