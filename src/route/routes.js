@@ -1,3 +1,4 @@
+const { getCities } = require('../handler/cityHandler')
 const {
   getDestinationById,
   searchDestinationByPlaceName,
@@ -49,6 +50,11 @@ const routes = [
     method: 'GET',
     path: '/api/destination/city/{cityTag}',
     handler: getDestinationByCityTag,
+  },
+  {
+    method: 'GET',
+    path: '/api/city/{cityTag}',
+    handler: getCities,
   },
 ]
 
