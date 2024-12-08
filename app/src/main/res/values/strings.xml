@@ -53,6 +53,17 @@
     <string name="dark_mode">Enable Dark Mode</string>
     <string name="provinsi">Provinsi</string>
     <string name="welcome_back">Welcome Back!</string>
+    <string name="wishlist">Wishlist Mu</string>
+    <string name="based_location">Berdasarkan Lokasi</string>
+    <string name="based_last_seen">Berdasarkan Riwayat</string>
+    <string name="beach">Beach</string>
+    <string name="natural">Natural</string>
+    <string name="tourist_destination">Tourist destination</string>
+    <string name="historical">Historical</string>
+    <string name="park">Park</string>
+    <string name="hiking_area">Hiking Area</string>
+    <string name="family_recreation">Family Recreation</string>
+    <string name="zoo">Zoo</string>
     <string-array name="cities_array">
         <item>Your Location</item>
         <item>Medan</item>

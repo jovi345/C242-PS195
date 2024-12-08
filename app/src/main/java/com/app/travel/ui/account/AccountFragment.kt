@@ -8,37 +8,44 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.app.travel.R
+import com.app.travel.databinding.FragmentAccountBinding
 import com.app.travel.ui.ViewModelFactory
 import com.app.travel.ui.auth.login.LoginActivity
 import com.app.travel.ui.auth.login.LoginViewModel
+import com.app.travel.ui.wishlist.WishlistActivity
 import com.google.android.material.button.MaterialButton
 
 class AccountFragment : Fragment() {
+
+    private var _binding: FragmentAccountBinding? = null
+    private val binding get() = _binding!!
     private val loginViewModel: LoginViewModel by viewModels { ViewModelFactory.getInstance(requireContext()) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_account, container, false)
+    ): View {
+        _binding = FragmentAccountBinding.inflate(inflater, container, false)
 
-        val logoutButton: MaterialButton = view.findViewById(R.id.logoutButton)
-        logoutButton.setOnClickListener {
+        // Tombol Logout
+        binding.logoutButton.setOnClickListener {
             loginViewModel.logout()
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
         }
 
+        // Navigasi ke Wishlist
+        binding.wishlistTextView.setOnClickListener {
+            val intent = Intent(requireContext(), WishlistActivity::class.java)
+            startActivity(intent)
+        }
 
-        return view
-
+        return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

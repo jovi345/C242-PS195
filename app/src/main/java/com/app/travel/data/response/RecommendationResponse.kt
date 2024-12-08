@@ -31,7 +31,7 @@ data class RecommendationResponse(
 	val phone: String? = null,
 
 	@SerializedName("id")
-	val id: Int? = null,
+	val id: String? = null,
 
 	@SerializedName("state")
 	val state: String? = null,

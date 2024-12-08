@@ -4,6 +4,7 @@ import com.app.travel.data.pref.UserModel
 import com.app.travel.data.pref.UserPreference
 import com.app.travel.data.response.LoginResponse
 import com.app.travel.data.response.PlaceDetailResponse
+import com.app.travel.data.response.RecomendLastSeenResponse
 import com.app.travel.data.response.RegisterResponse
 import com.app.travel.data.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
@@ -18,14 +19,20 @@ class UserRepository private constructor(
         return apiService.register(username, email, password, confirmPassword, userLocation)
     }
 
+    suspend fun login(email: String, password: String) : LoginResponse {
+        return apiService.login(email, password)
+    }
+
     suspend fun getPlaceDetail(id: String, token: String): PlaceDetailResponse {
         return withContext(Dispatchers.IO) {
             apiService.getPlaceDetail(id, "Bearer $token")
         }
     }
 
-    suspend fun login(email: String, password: String) : LoginResponse {
-        return apiService.login(email, password)
+    suspend fun getHistory(token: String): RecomendLastSeenResponse {
+        return withContext(Dispatchers.IO) {
+            apiService.getHistory("Bearer $token")
+        }
     }
 
     suspend fun saveSession(user: UserModel) {

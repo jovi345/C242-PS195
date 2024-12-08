@@ -9,68 +9,81 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             app:shapeAppearanceOverlay="@style/RoundImage"
-            tools:src="@tools:sample/avatars"
-            android:layout_gravity="center"/>
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/welcomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="@string/akun"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
             android:text="@string/email"
             android:textSize="12sp"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp"
+            android:text="@string/settings"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:gravity="center" />
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/darkModeSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/dark_mode"
+            android:padding="10dp"
+            android:textStyle="bold"
             style="@style/Widget.Material3.CompoundButton.MaterialSwitch"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            />
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/wishlistTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="10dp"
+            android:text="@string/wishlist"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:drawablePadding="8dp"
+            app:drawableEndCompat="@drawable/ic_navigate_next_24"
+            tools:ignore="UseCompoundDrawables" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/logoutButton"
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:text="@string/logout"
             android:textColor="@color/black"
             app:icon="@drawable/baseline_logout_24"
             app:iconTint="@color/black" />
-
 
     </LinearLayout>
 </FrameLayout>

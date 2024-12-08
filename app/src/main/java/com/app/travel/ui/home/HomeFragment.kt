@@ -32,17 +32,32 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inisialisasi ViewModel dengan Repository
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         val repository = Injection.provideRepository(requireContext())
         homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 
-        // Inflate layout
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
         setupSpinner()
         setupRecyclerView()
-        observeSession()
-        observeRecommendations()
+
+        // Observasi lokasi yang dipilih untuk fetch rekomendasi
+        binding.spinnerCities.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (position != 0) {
+                    val location = parent.getItemAtPosition(position).toString().lowercase(Locale.ROOT)
+                    homeViewModel.fetchRecommendationsByLocation(location)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        // Ambil data rekomendasi berdasarkan riwayat pengguna
+        homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            if (user.isLogin) {
+                homeViewModel.fetchRecommendationsByHistory(user.token)
+            }
+        }
 
         return binding.root
     }
@@ -63,7 +78,7 @@ class HomeFragment : Fragment() {
                 if (position != 0) {
                     val selectedLocation = parent.getItemAtPosition(position).toString()
                         .lowercase(Locale.ROOT)
-                    homeViewModel.fetchRecommendations(selectedLocation)
+                    homeViewModel.fetchRecommendationsByLocation(selectedLocation)
                 }
             }
 
@@ -74,20 +89,34 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val recyclerView = binding.rvRecomendation
-        val adapter = RecommendationAdapter(emptyList()) { id ->
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            intent.putExtra("PLACE_ID", id)
-            startActivity(intent)
+        // RecyclerView 1: Berdasarkan Lokasi
+        val locationAdapter = RecommendationAdapter(emptyList()) { id ->
+            navigateToDetail(id)
         }
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvRecommendationsByLocation.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = locationAdapter
+        }
 
-        // Observasi rekomendasi dan perbarui data adapter
-        homeViewModel.recommendations.observe(viewLifecycleOwner) { recommendations ->
-            adapter.updateData(recommendations)
+        // RecyclerView 2: Berdasarkan Riwayat
+        val historyAdapter = RecommendationAdapter(emptyList()) { id ->
+            navigateToDetail(id)
+        }
+        binding.rvRecommendationsByHistory.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = historyAdapter
+        }
+
+        // Observasi data untuk kedua RecyclerView
+        homeViewModel.recommendationsByLocation.observe(viewLifecycleOwner) { recommendations ->
+            locationAdapter.updateData(recommendations)
+        }
+
+        homeViewModel.recommendationsByHistory.observe(viewLifecycleOwner) { recommendations ->
+            historyAdapter.updateData(recommendations)
         }
     }
+
 
     private fun observeSession() {
         homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
@@ -103,17 +132,24 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun navigateToDetail(placeId: String) {
+        val intent = Intent(requireContext(), DetailActivity::class.java)
+        intent.putExtra("PLACE_ID", placeId)
+        startActivity(intent)
+    }
+
+
     private fun navigateToWelcomeScreen() {
         val intent = Intent(requireContext(), WelcomeActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
     }
 
-    private fun observeRecommendations() {
-        homeViewModel.recommendations.observe(viewLifecycleOwner) { recommendations ->
-            println("Fragment received recommendations: $recommendations")
-        }
-    }
+//    private fun observeRecommendations() {
+//        homeViewModel.recommendations.observe(viewLifecycleOwner) { recommendations ->
+//            println("Fragment received recommendations: $recommendations")
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

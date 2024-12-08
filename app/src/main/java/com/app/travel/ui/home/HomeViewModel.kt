@@ -7,6 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.app.travel.data.pref.UserModel
 import com.app.travel.data.repo.UserRepository
+import com.app.travel.data.response.DataItem
 import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RecommendationResponse
 import com.app.travel.data.retrofit.ApiConfig
@@ -14,22 +15,45 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _recommendations = MutableLiveData<List<RecommendationResponse?>>()
-    val recommendations: LiveData<List<RecommendationResponse?>> = _recommendations
+    private val _recommendationsByLocation = MutableLiveData<List<RecommendationResponse?>>()
+    val recommendationsByLocation: LiveData<List<RecommendationResponse?>> = _recommendationsByLocation
 
-    private val _placeDetail = MutableLiveData<PlaceDetailResponse>()
-    val placeDetail: LiveData<PlaceDetailResponse> get() = _placeDetail
+    private val _recommendationsByHistory = MutableLiveData<List<RecommendationResponse?>>()
+    val recommendationsByHistory: LiveData<List<RecommendationResponse?>> = _recommendationsByHistory
 
-    fun fetchRecommendations(lokasi: String) {
+    fun fetchRecommendationsByLocation(location: String) {
         viewModelScope.launch {
             try {
-                val response = ApiConfig.getRecommendationService().getRecommendations(lokasi)
-                _recommendations.postValue(response)
+                val response = ApiConfig.getRecommendationService().getRecommendations(location)
+                _recommendationsByLocation.postValue(response)
             } catch (e: Exception) {
-                // Handle error
                 e.printStackTrace()
             }
         }
+    }
+
+    fun fetchRecommendationsByHistory(token: String) {
+        viewModelScope.launch {
+            try {
+                val response = repository.getHistory(token)
+                response.data?.let { data ->
+                    _recommendationsByHistory.postValue(data.map { it?.toRecommendationResponse() })
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun DataItem.toRecommendationResponse(): RecommendationResponse {
+        return RecommendationResponse(
+            id = this.id.toString(),
+            placeName = this.placeName,
+            city = this.city,
+            category = this.category,
+            imageUrl = this.imageUrl,
+            description = this.description
+        )
     }
 
     fun getSession(): LiveData<UserModel> {
