@@ -66,7 +66,7 @@ const recommendPlaceByLastseen = async (request, h) => {
   const query = 'SELECT * FROM users WHERE email = ?'
   const [row] = await dbConfig.query(query, [email])
 
-  const id = row[0].last_seen
+  const id = row[0].last_seen - 1
 
   const targetUrl = `${process.env.TARGET_URL}/${id}`
 
