@@ -2,7 +2,13 @@ from flask import jsonify, request, Flask
 from flask_cors import CORS
 
 from db_connection import get_connection
-from first_model_handler import recommend_place, data, first_model, tfidf
+from first_model_handler import (
+    recommend_place,
+    recommend_placeById,
+    data,
+    first_model,
+    tfidf,
+)
 from second_model_handler import get_similar_places
 import random
 
@@ -72,11 +78,17 @@ def recommendPlaceByLocation(location):
     return jsonify(result)
 
 
-@app.route("/api/destination/recommendation-cb/history/<lastseen_id>", methods=["GET"])
-def recommendPlaceByLastseen(lastseen_id):
-    top_n = 100
-    place_names = get_similar_places(int(lastseen_id), top_n)
-    place_names_str = "', '".join(place_names)
+@app.route("/api/destination/recommendation-cb/history/<idx>", methods=["GET"])
+def recommendByPlaceId(idx):
+    recommendations = recommend_placeById(int(idx), data, first_model, tfidf)
+
+    recommendation_result = recommendations.to_dict(orient="records")
+
+    arr = []
+    for recomendation in recommendation_result:
+        arr.append(recomendation["place_name"])
+
+    place_names_str = "', '".join(arr)
     query = f"SELECT * FROM destinations WHERE place_name IN ('{place_names_str}');"
     connection = get_connection()
     cursor = connection.cursor()

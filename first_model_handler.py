@@ -26,3 +26,13 @@ def recommend_place(input_place, data, model_1, tfidf):
         ["id", "place_name", "rating", "reviews_count"]
     ]
     return recommended_places
+
+
+def recommend_placeById(idx, data, model_1, tfidf):
+    input_features = tfidf.transform([data.loc[idx, "combined_features"]]).toarray()
+    predictions = model_1.predict(input_features)
+    recommended_idx = np.argsort(predictions[0])[-6:-1]
+    recommended_places = data.iloc[recommended_idx][
+        ["id", "place_name", "rating", "reviews_count"]
+    ]
+    return recommended_places
