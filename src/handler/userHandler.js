@@ -122,7 +122,7 @@ const loginUser = async (request, h) => {
     }
 
     const user = row[0]
-    const { hashed_password } = user
+    const { username, user_location, hashed_password } = user
     const isPasswordMatched = await bcrypt.compare(password, hashed_password)
 
     if (!isPasswordMatched) {
@@ -140,6 +140,8 @@ const loginUser = async (request, h) => {
       status: 'success',
       loginResult: {
         email,
+        username,
+        user_location,
         token,
       },
     })
