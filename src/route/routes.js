@@ -29,7 +29,7 @@ const routes = [
     },
   },
   {
-    method: 'POST',
+    method: 'GET',
     path: '/api/destination/search',
     handler: searchDestinationByPlaceName,
   },

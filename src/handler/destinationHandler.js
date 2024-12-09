@@ -38,12 +38,13 @@ const getDestinationById = async (request, h) => {
 }
 
 const searchDestinationByPlaceName = async (request, h) => {
-  const { place_name } = request.payload
+  const { q } = request.query
+  const place_name = `%${q}%`
 
-  const searchQuery = 'SELECT * FROM destinations WHERE place_name = ?'
+  const searchQuery = 'SELECT * FROM destinations WHERE place_name LIKE ?'
   const [row] = await dbConfig.query(searchQuery, [place_name])
 
-  if (row.length != 1) {
+  if (row.length == 0) {
     const response = h.response({
       status: 'failed',
       message: 'Place is not found',
@@ -54,7 +55,7 @@ const searchDestinationByPlaceName = async (request, h) => {
 
   const response = h.response({
     status: 'success',
-    data: row[0],
+    data: row,
   })
   return response
 }

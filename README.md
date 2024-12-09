@@ -167,11 +167,11 @@
 
 #### Request
 
-| **Method**     | **POST**                         |
-| :------------- | :------------------------------- |
-| `Endpoint`     | `/api/destination/search`        |
-| `Headers`      | `Content-Type: application/json` |
-| `Request Body` | `JSON`                           |
+| **Method**     | **GET**                                  |
+| :------------- | :--------------------------------------- |
+| `Endpoint`     | `/api/destination/search?q=<place name>` |
+| `Headers`      | `Content-Type: application/json`         |
+| `Request Body` | `JSON`                                   |
 
 #### Response
 
@@ -182,33 +182,34 @@
 
 ##### Example
 
-```json
-{
-  "place_name": "Taman Mini Indonesia Indah"
-}
-```
+{{baseUrl}}/api/destination/search?q=taman mini
 
 ##### Response Example
 
 ```json
 {
   "status": "success",
-  "data": {
-    "id": 1,
-    "place_name": "Taman Mini Indonesia Indah",
-    "state": "Daerah Khusus Ibukota Jakarta",
-    "city": "Kota Jakarta Timur",
-    "city_tag": "jakarta",
-    "phone": "+62 804 178 9789",
-    "category": "rekreasi_keluarga",
-    "description": "Taman yang memamerkan budaya dan alam Indonesia melalui museum, taman, dan replika pemandangan terkenal.",
-    "image_url": "https://storage.googleapis.com/travelease-bucket/jakarta/taman_mini_indonesia_indah.jpg",
-    "reviews_count": 164271,
-    "rating": 4.6,
-    "lat": "-6.3020386",
-    "lng": "106.8898924",
-    "cluster": 8
-  }
+  "data": [
+    {
+      "id": 1,
+      "place_name": "Taman Mini Indonesia Indah",
+      "state": "Daerah Khusus Ibukota Jakarta",
+      "city": "Kota Jakarta Timur",
+      "city_tag": "jakarta",
+      "phone": "+62 804 178 9789",
+      "category": "rekreasi_keluarga",
+      "description": "Taman yang memamerkan budaya dan alam Indonesia melalui museum, taman, dan replika pemandangan terkenal.",
+      "image_url": "https://storage.googleapis.com/travelease-bucket/jakarta/taman_mini_indonesia_indah.jpg",
+      "reviews_count": 164271,
+      "rating": 4.6,
+      "lat": "-6.3020386",
+      "lng": "106.8898924",
+      "cluster": 8
+    },
+    {
+      // ...
+    }
+  ]
 }
 ```
 
