@@ -25,6 +25,8 @@ class WelcomeActivity : AppCompatActivity() {
         btnStart.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
+            overridePendingTransition(R.transition.animation_enter, R.transition.animation_exit)
         }
         lifecycleScope.launch {
             loginViewModel.getSession().collect { user ->
@@ -33,11 +35,13 @@ class WelcomeActivity : AppCompatActivity() {
                     val intent = Intent(this@WelcomeActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
+                    overridePendingTransition(R.transition.popup_enter, R.transition.popup_exit)
                 } else {
                     // User is not logged in, redirect to login screen
                     val intent = Intent(this@WelcomeActivity, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
+                    overridePendingTransition(R.transition.popup_enter, R.transition.popup_exit)
                 }
             }
         }

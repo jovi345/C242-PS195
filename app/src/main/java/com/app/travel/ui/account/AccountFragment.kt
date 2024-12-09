@@ -42,6 +42,7 @@ class AccountFragment : Fragment() {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
+            requireActivity().overridePendingTransition(R.transition.animation_enter, R.transition.animation_exit)
         }
 
         // Navigasi ke Wishlist

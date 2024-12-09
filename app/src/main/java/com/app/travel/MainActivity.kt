@@ -7,6 +7,7 @@ import android.view.WindowInsets
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -36,5 +37,33 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navView.setOnItemSelectedListener { item ->
+            val navOptions = NavOptions.Builder()
+                .setEnterAnim(R.anim.nav_default_enter)
+                .setExitAnim(R.anim.nav_default_exit)
+                .setPopEnterAnim(R.anim.nav_default_popup_enter)
+                .setPopExitAnim(R.anim.nav_default_popup_exit)
+                .build()
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    navController.navigate(R.id.navigation_home, null, navOptions)
+                    true
+                }
+                R.id.navigation_explore -> {
+                    navController.navigate(R.id.navigation_explore, null, navOptions)
+                    true
+                }
+                R.id.navigation_search -> {
+                    navController.navigate(R.id.navigation_search, null, navOptions)
+                    true
+                }
+                R.id.navigation_account -> {
+                    navController.navigate(R.id.navigation_account, null, navOptions)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }
