@@ -78,4 +78,59 @@
         <item>Bali</item>
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="fill_in_your_preferences">Fill in Your Preferences</string>
+    <string name="mbti">MBTI</string>
+    <string name="input_your_mbti_type">Input your MBTI type</string>
+    <string name="click_here_to_check">Click here to check</string>
+    <string name="preferred_category">Preferred Category</string>
+    <string name="travel_style">Travel Style</string>
+    <string name="age">Age</string>
+    <string name="your_age">Your Age</string>
+    <string name="travel_frequency">Travel Frequency</string>
+    <string name="submit">Submit</string>
+
+    <string-array name="mbti">
+        <item>INTJ</item>
+        <item>INTP</item>
+        <item>ENTJ</item>
+        <item>ENTP</item>
+        <item>INFJ</item>
+        <item>INFP</item>
+        <item>ENFJ</item>
+        <item>ENFP</item>
+        <item>ISTJ</item>
+        <item>ISFJ</item>
+        <item>ESTJ</item>
+        <item>ESFJ</item>
+        <item>ISTP</item>
+        <item>ISFP</item>
+        <item>ESTP</item>
+        <item>ESFP</item>
+    </string-array>
+
+
+    <string-array name="location_array">
+        <item>Jakarta</item>
+        <item>Bandung</item>
+        <item>Surabaya</item>
+    </string-array>
+
+    <string-array name="category_array">
+        <item>Alam</item>
+        <item>Budaya</item>
+        <item>Kuliner</item>
+    </string-array>
+
+    <string-array name="travel_style_array">
+        <item>Backpacking</item>
+        <item>Mewah</item>
+        <item>Keluarga</item>
+    </string-array>
+
+    <string-array name="travel_frequency_array">
+        <item>Jarang</item>
+        <item>Sesekali</item>
+        <item>Sering</item>
+    </string-array>
+
 </resources>
