@@ -1,5 +1,7 @@
 package com.app.travel.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,8 +18,10 @@ import com.app.travel.data.repo.Injection
 import com.app.travel.databinding.ActivityDetailBinding
 import com.app.travel.ui.ViewModelFactory
 import com.app.travel.ui.auth.login.LoginViewModel
+import com.app.travel.ui.map.MapsFragment
 import com.app.travel.ui.wishlist.WishlistViewModel
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.MapFragment
 import kotlinx.coroutines.launch
 
 class DetailActivity() : AppCompatActivity() {
@@ -65,7 +69,27 @@ class DetailActivity() : AppCompatActivity() {
             }
         }
 
+        binding.locationButton.setOnClickListener{
+            val latitude = detailViewModel.placeDetail.value?.lat?.toDouble()
+            val longitude = detailViewModel.placeDetail.value?.lng?.toDouble()
+            val placeName = detailViewModel.placeDetail.value?.place_name
+
+            if (latitude != null && longitude != null && placeName != null) {
+                navigateToMap(latitude, longitude, placeName)
+            }
+
+        }
+
         setupObserver()
+    }
+
+    private fun navigateToMap(latitude: Double, longitude: Double, placeName: String) {
+        val gmmIntentUri = Uri.parse("geo:$latitude,$longitude?q=$latitude,$longitude($placeName)")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        if (mapIntent.resolveActivity(packageManager) != null) {
+            startActivity(mapIntent)
+        }
     }
 
     private fun setupObserver() {

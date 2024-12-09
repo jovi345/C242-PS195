@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+import kotlin.math.log
 
 class LoginViewModel( private val repository: UserRepository) : ViewModel() {
 
@@ -26,7 +27,13 @@ class LoginViewModel( private val repository: UserRepository) : ViewModel() {
             try {
                 val response = repository.login(email, password)
                 response.loginResult?.token?.let { token ->
-                    saveSession(UserModel(email, token, isLogin = true))
+                    saveSession(UserModel(
+                        email = response.loginResult.email,
+                        username = response.loginResult.username,
+                        userLocation = response.loginResult.userLocation,
+                        token = response.loginResult.token,
+                        isLogin = true
+                    ))
                 }
                 _loginResult.postValue(response.status?: "Login successful")
 //                if (response.status == "Login successful") {

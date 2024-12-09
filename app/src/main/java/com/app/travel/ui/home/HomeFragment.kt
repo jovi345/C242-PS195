@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
         val repository = Injection.provideRepository(requireContext())
         homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 
+        observeSession()
         setupSpinner()
         setupRecyclerView()
 
@@ -125,7 +126,7 @@ class HomeFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    getString(R.string.welcome_back),
+                    getString(R.string.welcome_back, user.username),
                     Toast.LENGTH_SHORT
                 ).show()
             }

@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.app.travel.data.pref.UserModel
 import com.app.travel.data.repo.UserRepository
 import com.app.travel.data.response.DataItem
-import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RecommendationResponse
 import com.app.travel.data.retrofit.ApiConfig
 import kotlinx.coroutines.launch

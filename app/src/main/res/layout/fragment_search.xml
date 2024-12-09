@@ -10,10 +10,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.search.SearchBar
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/destinationSearchBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/search_here" />
+            android:layout_height="wrap_content" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -26,6 +26,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBeach"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/beach"
@@ -33,6 +34,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNatural"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/natural"
@@ -40,6 +42,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTouristDestination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tourist_destination"
@@ -47,6 +50,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHistorical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/historical"
@@ -54,6 +58,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/park"
@@ -61,6 +66,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHikingArea"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/hiking_area"
@@ -68,6 +74,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFamilyRecreation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/family_recreation"
@@ -75,6 +82,7 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnZoo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/zoo"
@@ -86,6 +94,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_recomendation_row"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearchResults"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_recomendation_row"/>

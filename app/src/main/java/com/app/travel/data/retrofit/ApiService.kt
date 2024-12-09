@@ -1,5 +1,6 @@
 package com.app.travel.data.retrofit
 
+import com.app.travel.data.response.CategoryResponse
 import com.app.travel.data.response.LoginResponse
 import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RecomendLastSeenResponse
@@ -49,7 +50,12 @@ interface ApiService {
 
     @GET("destination/search")
     suspend fun searchDestinations(
-        @Query("query") query: String
-    ): List<RecommendationResponse>
+        @Query("q") query: String
+    ): CategoryResponse
+
+    @GET("destination/category/{category}")
+    suspend fun getDestinationsByCategory(
+        @Path("category") category: String
+    ): CategoryResponse
 }
 

@@ -2,9 +2,12 @@ package com.app.travel.data.repo
 
 import com.app.travel.data.pref.UserModel
 import com.app.travel.data.pref.UserPreference
+import com.app.travel.data.response.CategoryResponse
+import com.app.travel.data.response.CategoryResponseItem
 import com.app.travel.data.response.LoginResponse
 import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RecomendLastSeenResponse
+import com.app.travel.data.response.RecommendationResponse
 import com.app.travel.data.response.RegisterResponse
 import com.app.travel.data.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
@@ -28,10 +31,23 @@ class UserRepository private constructor(
             apiService.getPlaceDetail(id, "Bearer $token")
         }
     }
+    suspend fun searchDestinations(query: String): List<CategoryResponseItem?> {
+        return withContext(Dispatchers.IO) {
+            val response = apiService.searchDestinations(query)
+            response.data ?: emptyList()
+        }
+    }
 
     suspend fun getHistory(token: String): RecomendLastSeenResponse {
         return withContext(Dispatchers.IO) {
             apiService.getHistory("Bearer $token")
+        }
+    }
+
+    suspend fun getDestinationsByCategory(category: String): List<CategoryResponseItem?> {
+        return withContext(Dispatchers.IO) {
+            val response = apiService.getDestinationsByCategory(category)
+            response.data ?: emptyList()
         }
     }
 
