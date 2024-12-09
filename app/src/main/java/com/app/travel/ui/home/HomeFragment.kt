@@ -129,6 +129,7 @@ class HomeFragment : Fragment() {
                     getString(R.string.welcome_back, user.username),
                     Toast.LENGTH_SHORT
                 ).show()
+                binding.textHome.text = getString(R.string.welcome_home, user.username)
             }
         }
     }

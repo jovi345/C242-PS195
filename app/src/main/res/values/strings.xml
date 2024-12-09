@@ -55,6 +55,7 @@
     <string name="dark_mode">Enable Dark Mode</string>
     <string name="provinsi">Provinsi</string>
     <string name="welcome_back">Welcome back, %1$s!</string>
+    <string name="welcome_home">Welcome %1$s!</string>
     <string name="wishlist">Wishlist Mu</string>
     <string name="based_location">Berdasarkan Lokasi</string>
     <string name="based_last_seen">Berdasarkan Riwayat</string>
