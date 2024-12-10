@@ -7,6 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red_500">#FF0000</color>
+    <color name="red_200">#EF9A9A</color>
+
+    <!--color night mode-->
+    <color name="teal_700_night">#03DAC6</color>
+    <color name="black_night">#121212</color>
+    <color name="red_500_night">#EF5350</color>
+    <color name="red_200_night">#B71C1C</color>
 
     <color name="gray">#222</color>
     <color name="pink">#E91E63</color>
@@ -19,7 +27,9 @@
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#00a5ff</color>
     <color name="loginBkColor">#f0f0f0</color>
+    <color name="backgroundColor">#FFFFFF</color>
 
     <!--colros for card-->
     <color name="whiteCardColor">#fff</color>
+
 </resources>

@@ -1,16 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TravelAssistant" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
+    <style name="Theme.TravelAssistant" parent="Theme.Material3.DayNight">
+        <!-- Primary brand color -->
         <item name="colorPrimary">@color/purple_200</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
+        <item name="colorOnPrimary">@color/black_night</item>
+
+        <!-- Secondary brand color -->
         <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+        <item name="colorSecondaryVariant">@color/teal_700_night</item>
+        <item name="colorOnSecondary">@color/black_night</item>
+
+        <!-- Status bar color -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+
+        <!-- Background and text -->
+        <item name="backgroundColor">@color/black</item>
+        <item name="colorSurface">@color/black_night</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorError">@color/red_200_night</item>
+        <item name="colorOnError">@color/black_night</item>
+
+        <!-- Ripple and button -->
+        <item name="rippleColor">@color/teal_700_night</item>
+        <item name="buttonStyle">@style/Widget.Material3.Button</item>
     </style>
 </resources>
