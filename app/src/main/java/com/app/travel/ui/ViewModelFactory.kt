@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.app.travel.data.repo.Injection
 import com.app.travel.data.repo.UserRepository
+import com.app.travel.ui.account.AccountViewModel
 import com.app.travel.ui.auth.login.LoginViewModel
 import com.app.travel.ui.auth.register.RegisterViewModel
 import com.app.travel.ui.detail.DetailViewModel
@@ -30,6 +31,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
                 SearchViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
+                AccountViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -37,15 +37,15 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    suspend fun saveDarkModePreference(isEnabled: Boolean) {
-        dataStore.edit { preferences ->
-            preferences[DARK_MODE_KEY] = isEnabled
+    fun getThemeSetting(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[THEME_KEY] ?: false
         }
     }
 
-    fun isDarkModeEnabled(): Flow<Boolean> {
-        return dataStore.data.map { preferences ->
-            preferences[DARK_MODE_KEY] ?: false
+    suspend fun saveThemeSetting(isDarkModeActive: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[THEME_KEY] = isDarkModeActive
         }
     }
 
@@ -64,7 +64,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val USER_LOCATION_KEY = stringPreferencesKey("userLocation")
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
-        private val DARK_MODE_KEY = booleanPreferencesKey("dark_mode")
+        private val THEME_KEY = booleanPreferencesKey("theme_setting")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import kotlin.math.log
 
-class LoginViewModel( private val repository: UserRepository) : ViewModel() {
+class LoginViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _loginResult = MutableLiveData<String>()
     val loginResult: LiveData<String> get() = _loginResult

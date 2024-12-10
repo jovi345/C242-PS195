@@ -6,26 +6,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.app.travel.R
 import com.app.travel.data.pref.UserModel
-import com.app.travel.data.pref.UserPreference
 import com.app.travel.data.pref.dataStore
 import com.app.travel.data.repo.Injection
+import com.app.travel.data.repo.UserRepository
 import com.app.travel.databinding.FragmentAccountBinding
 import com.app.travel.ui.ViewModelFactory
 import com.app.travel.ui.auth.login.LoginActivity
 import com.app.travel.ui.auth.login.LoginViewModel
 import com.app.travel.ui.home.HomeViewModel
 import com.app.travel.ui.wishlist.WishlistActivity
-import com.google.android.material.button.MaterialButton
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.observeOn
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class AccountFragment : Fragment() {
 
@@ -33,6 +29,7 @@ class AccountFragment : Fragment() {
     private val binding get() = _binding!!
     private val loginViewModel: LoginViewModel by viewModels { ViewModelFactory.getInstance(requireContext()) }
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var accountViewModel: AccountViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +39,9 @@ class AccountFragment : Fragment() {
 
         val repository = Injection.provideRepository(requireContext())
         homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
+
+        val switchTheme = binding.darkModeSwitch
+        accountViewModel = ViewModelProvider(this, ViewModelFactory(repository))[AccountViewModel::class.java]
 
         // Tombol Logout
         binding.logoutButton.setOnClickListener {
@@ -62,30 +62,21 @@ class AccountFragment : Fragment() {
             binding.emailTextView.text = user.email
         }
 
-        binding.darkModeSwitch.isChecked = isDarkModeEnabled()
-
-        binding.darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+        accountViewModel.getThemeSettings().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                switchTheme.isChecked = true
             }
-            saveDarkModePreference(isChecked) // Simpan preferensi pengguna
+            else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                switchTheme.isChecked = false
+            }
         }
 
+        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            accountViewModel.saveThemeSetting(isChecked)
+        }
         return binding.root
-    }
-
-    private fun isDarkModeEnabled(): Boolean {
-        return runBlocking {
-            UserPreference.getInstance(requireContext().dataStore).isDarkModeEnabled().first()
-        }
-    }
-
-    private fun saveDarkModePreference(isEnabled: Boolean) {
-        lifecycleScope.launch {
-            UserPreference.getInstance(requireContext().dataStore).saveDarkModePreference(isEnabled)
-        }
     }
 
     override fun onDestroyView() {

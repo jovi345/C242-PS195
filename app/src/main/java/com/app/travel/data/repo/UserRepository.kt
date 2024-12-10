@@ -1,5 +1,6 @@
 package com.app.travel.data.repo
 
+import androidx.datastore.preferences.core.edit
 import com.app.travel.data.pref.UserModel
 import com.app.travel.data.pref.UserPreference
 import com.app.travel.data.response.CategoryResponse
@@ -12,6 +13,7 @@ import com.app.travel.data.response.RegisterResponse
 import com.app.travel.data.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class UserRepository private constructor(
@@ -57,6 +59,14 @@ class UserRepository private constructor(
 
     fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
+    }
+
+    fun getThemeSetting(): Flow<Boolean> {
+        return userPreference.getThemeSetting()
+    }
+
+    suspend fun saveThemeSetting(isDarkModeActive: Boolean) {
+        return userPreference.saveThemeSetting(isDarkModeActive)
     }
 
     suspend fun logout() {
