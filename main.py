@@ -55,7 +55,7 @@ def recommendPlaceByLocation(location):
         "jakarta": [1, 8, 36],
         "bali": [367, 320, 310],
         "medan": [67, 71, 62],
-        "padang": [81, 97, 77],
+        "padang": [93, 97, 77],
         "batam": [258, 284, 232],
         "yogyakarta": [479, 488, 534],
         "lombok": [108, 134, 180],
