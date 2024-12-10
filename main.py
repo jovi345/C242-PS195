@@ -10,6 +10,7 @@ from first_model_handler import (
     tfidf,
 )
 from second_model_handler import get_similar_places
+from third_model_handler import recommendPlaceBySurveyResult
 import random
 
 
@@ -90,6 +91,37 @@ def recommendByPlaceId(idx):
 
     place_names_str = "', '".join(arr)
     query = f"SELECT * FROM destinations WHERE place_name IN ('{place_names_str}');"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(query)
+    rows = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    result = [dict(zip(columns, row)) for row in rows]
+    cursor.close()
+    connection.close()
+
+    return jsonify(result)
+
+
+@app.route("/api/destination/survey-recommendation", methods=["POST"])
+def recommendBySurveyResult():
+    user_data = request.json
+    idx = recommendPlaceBySurveyResult(user_data)
+    category = user_data["preffered_category"].replace("_", " ").title()
+
+    print(category)
+    placeholders = ", ".join(map(str, idx))
+    query = f"""
+    SELECT * 
+    FROM destinations 
+    WHERE id IN ({placeholders}) 
+    ORDER BY 
+        CASE 
+            WHEN category = '{category}' THEN 0 
+            ELSE 1 
+        END, 
+        category;
+    """
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(query)
