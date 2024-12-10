@@ -108,14 +108,19 @@ def recommendBySurveyResult():
     user_data = request.json
     idx = recommendPlaceBySurveyResult(user_data)
     category = user_data["preffered_category"].replace("_", " ").title()
+    city_tag = user_data["location"]
 
-    print(category)
     placeholders = ", ".join(map(str, idx))
     query = f"""
     SELECT * 
     FROM destinations 
     WHERE id IN ({placeholders}) 
     ORDER BY 
+        CASE 
+             WHEN city_tag = '{city_tag}' THEN 0 
+            ELSE 1 
+        END,
+        city_tag,
         CASE 
             WHEN category = '{category}' THEN 0 
             ELSE 1 
