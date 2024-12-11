@@ -88,6 +88,7 @@
     <string name="your_age">Your Age</string>
     <string name="travel_frequency">Travel Frequency</string>
     <string name="submit">Submit</string>
+    <string name="scroll_down_for_your_result">Scroll Down For Your Result</string>
 
     <string-array name="mbti">
         <item>INTJ</item>
@@ -110,27 +111,41 @@
 
 
     <string-array name="location_array">
+        <item>Medan</item>
+        <item>Padang</item>
+        <item>Batam</item>
         <item>Jakarta</item>
-        <item>Bandung</item>
-        <item>Surabaya</item>
+        <item>Yogyakarta</item>
+        <item>Lombok</item>
+        <item>Bali</item>
     </string-array>
 
     <string-array name="category_array">
         <item>Alam</item>
-        <item>Budaya</item>
-        <item>Kuliner</item>
+        <item>Sejarah Budaya</item>
+        <item>Hiking Area</item>
+        <item>Hotel</item>
+        <item>Kebun Binatang</item>
+        <item>Pantai</item>
+        <item>Taman</item>
+        <item>Rekreasi Keluarga</item>
+        <item>Snorkling Area</item>
+        <item>Tourist Attraction</item>
+        <item>Tujuan Wisata</item>
     </string-array>
 
     <string-array name="travel_style_array">
-        <item>Backpacking</item>
-        <item>Mewah</item>
-        <item>Keluarga</item>
+        <item>Solo</item>
+        <item>Family</item>
+        <item>Partner</item>
     </string-array>
 
     <string-array name="travel_frequency_array">
-        <item>Jarang</item>
-        <item>Sesekali</item>
-        <item>Sering</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
 </resources>

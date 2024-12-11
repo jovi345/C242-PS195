@@ -1,11 +1,14 @@
 package com.app.travel.data.retrofit
 
 import com.app.travel.data.response.CategoryResponse
+import com.app.travel.data.response.CategoryResponseItem
 import com.app.travel.data.response.LoginResponse
 import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RecomendLastSeenResponse
 import com.app.travel.data.response.RecommendationResponse
 import com.app.travel.data.response.RegisterResponse
+import com.app.travel.data.response.SurveyRequest
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -57,5 +60,10 @@ interface ApiService {
     suspend fun getDestinationsByCategory(
         @Path("category") category: String
     ): CategoryResponse
+
+    @POST("destination/survey-recommendation")
+    suspend fun getSurveyRecommendations(
+        @Body request: SurveyRequest
+    ) : List<CategoryResponseItem>
 }
 
