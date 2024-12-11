@@ -52,7 +52,7 @@ def recommendPlaceByLocation(location):
     top_n = 100
 
     location_to_ids = {
-     "jakarta":  [random.randint(1, 50)],
+        "jakarta": [random.randint(1, 50)],
         "bali": [random.randint(1, 181)],
         "medan": [random.randint(1, 53)],
         "padang": [random.randint(1, 29)],
@@ -107,25 +107,18 @@ def recommendByPlaceId(idx):
 def recommendBySurveyResult():
     user_data = request.json
     idx = recommendPlaceBySurveyResult(user_data)
-    category = user_data["preffered_category"].replace("_", " ").title()
-    city_tag = user_data["location"]
 
     placeholders = ", ".join(map(str, idx))
+    order_by_case = "\n".join([f"WHEN id = {id} THEN {i}" for i, id in enumerate(idx)])
+
     query = f"""
     SELECT * 
     FROM destinations 
     WHERE id IN ({placeholders}) 
     ORDER BY 
         CASE 
-             WHEN city_tag = '{city_tag}' THEN 0 
-            ELSE 1 
-        END,
-        city_tag,
-        CASE 
-            WHEN category = '{category}' THEN 0 
-            ELSE 1 
-        END, 
-        category;
+            {order_by_case} 
+        END;
     """
     connection = get_connection()
     cursor = connection.cursor()
