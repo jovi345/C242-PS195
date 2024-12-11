@@ -6,6 +6,7 @@ import com.app.travel.data.response.LoginResponse
 import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RecomendLastSeenResponse
 import com.app.travel.data.response.RecommendationResponse
+import com.app.travel.data.response.RegionResponse
 import com.app.travel.data.response.RegisterResponse
 import com.app.travel.data.response.SurveyRequest
 import retrofit2.http.Body
@@ -39,6 +40,11 @@ interface ApiService {
     suspend fun getRecommendations(
         @Path("location") location: String
     ) : List<RecommendationResponse>
+
+    @GET("city/{city}")
+    suspend fun getRegion(
+        @Path("city") city: String
+    ) : List<RegionResponse>
 
     @GET("destination/place/{id}")
     suspend fun getPlaceDetail(

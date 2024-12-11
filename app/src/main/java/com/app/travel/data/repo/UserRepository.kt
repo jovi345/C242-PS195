@@ -9,6 +9,7 @@ import com.app.travel.data.response.LoginResponse
 import com.app.travel.data.response.PlaceDetailResponse
 import com.app.travel.data.response.RecomendLastSeenResponse
 import com.app.travel.data.response.RecommendationResponse
+import com.app.travel.data.response.RegionResponse
 import com.app.travel.data.response.RegisterResponse
 import com.app.travel.data.retrofit.ApiService
 import kotlinx.coroutines.Dispatchers
@@ -37,6 +38,12 @@ class UserRepository private constructor(
         return withContext(Dispatchers.IO) {
             val response = apiService.searchDestinations(query)
             response.data ?: emptyList()
+        }
+    }
+
+    suspend fun getRegion(city: String): List<RegionResponse> {
+        return withContext(Dispatchers.IO) {
+            apiService.getRegion(city)
         }
     }
 

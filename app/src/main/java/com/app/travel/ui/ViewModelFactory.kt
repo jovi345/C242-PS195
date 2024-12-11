@@ -8,6 +8,7 @@ import com.app.travel.data.repo.UserRepository
 import com.app.travel.ui.account.AccountViewModel
 import com.app.travel.ui.auth.login.LoginViewModel
 import com.app.travel.ui.auth.register.RegisterViewModel
+import com.app.travel.ui.destination.DestinationViewModel
 import com.app.travel.ui.detail.DetailViewModel
 import com.app.travel.ui.home.HomeViewModel
 import com.app.travel.ui.search.SearchViewModel
@@ -34,6 +35,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(AccountViewModel::class.java) -> {
                 AccountViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DestinationViewModel::class.java) -> {
+                DestinationViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

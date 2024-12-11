@@ -17,6 +17,9 @@
         android:theme="@style/Theme.TravelAssistant"
         tools:targetApi="31">
         <activity
+            android:name=".ui.destination.DestinationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.explore.ResultActivity"
             android:exported="false" />
         <!--
