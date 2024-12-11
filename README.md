@@ -99,3 +99,54 @@ Bangkit Capstone Team ID: C242-PS195
   }
 ]
 ```
+
+### 3. Recommendation by Survey Result
+
+#### Request
+
+| **Method** | **POST**                                 |
+| :--------- | :--------------------------------------- |
+| `Endpoint` | `/api/destination/survey-recommendation` |
+
+#### Example
+
+```json
+{
+  "mbti": "ENTJ",
+  "location": "lombok",
+  "preffered_category": "tujuan_wisata",
+  "travel_style": "partner",
+  "age": "21",
+  "travel_frequency": "1"
+}
+```
+
+#### Response
+
+| **Method** | **Description** | **Response Body**   |
+| :--------- | :-------------- | ------------------- |
+| 200        | Success         | `See example below` |
+
+```json
+[
+  {
+    "category": "Alam",
+    "city": "Kabupaten Lombok Tengah",
+    "city_tag": "lombok",
+    "cluster": 0,
+    "description": "Perlu tiket untuk melihat 2 air terjun yang mengalir di atas tebing yang tertutup pakis di area hutan.",
+    "id": 104,
+    "image_url": "https://storage.googleapis.com/travelease-bucket/lombok/benang_stokel_and_benang_kelambu_waterfall.jpg",
+    "lat": "-8.533019",
+    "lng": "116.3413827",
+    "phone": "+62 819-4980-0700",
+    "place_name": "Benang Stokel and Benang Kelambu Waterfall",
+    "rating": 4.3,
+    "reviews_count": 1286,
+    "state": "Nusa Tenggara Bar."
+  },
+  {
+    // ...
+  }
+]
+```
