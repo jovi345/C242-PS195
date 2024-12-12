@@ -28,5 +28,5 @@ Bangkti Capstone Team ID: C242-PS195
 ## App Overview
 
 ## Tech Stack
-![tech-stack drawio](https://github.com/user-attachments/assets/46972729-07da-4672-9196-f58a059a53e8)
+![tech-stack drawio (1)](https://github.com/user-attachments/assets/f4bce969-aa65-489d-85f4-41a13b7c0d59)
 
