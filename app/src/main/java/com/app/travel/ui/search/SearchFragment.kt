@@ -1,6 +1,7 @@
 package com.app.travel.ui.search
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,10 +9,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.travel.R
 import com.app.travel.data.repo.Injection
 import com.app.travel.databinding.FragmentSearchBinding
 import com.app.travel.ui.ViewModelFactory
@@ -22,7 +25,10 @@ class SearchFragment : Fragment() {
     private lateinit var searchViewModel: SearchViewModel
     private lateinit var binding: FragmentSearchBinding
     private lateinit var categoryAdapter: SearchRecommendationAdapter
+    private var selectedCategoryButtonId: Int? = null
 
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -40,30 +46,23 @@ class SearchFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun setupCategory() {
-        binding.btnBeach.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("pantai")
-        }
-        binding.btnNatural.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("alam")
-        }
-        binding.btnTouristDestination.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("tujuan wisata")
-        }
-        binding.btnHistorical.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("budaya sejarah")
-        }
-        binding.btnPark.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("taman")
-        }
-        binding.btnHikingArea.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("hiking area")
-        }
-        binding.btnFamilyRecreation.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("rekreasi keluarga")
-        }
-        binding.btnZoo.setOnClickListener {
-            searchViewModel.getDestinationsByCategory("kebun binatang")
+        val chipGroup = binding.chipGroupCategories
+
+        chipGroup.setOnCheckedChangeListener { group, checkedId ->
+            val category = when (checkedId) {
+                R.id.chipBeach -> "pantai"
+                R.id.chipNatural -> "alam"
+                R.id.chipTouristDestination -> "tujuan wisata"
+                R.id.chipHistorical -> "budaya sejarah"
+                R.id.chipPark -> "taman"
+                R.id.chipHikingArea -> "hiking area"
+                R.id.chipFamilyRecreation -> "rekreasi keluarga"
+                R.id.chipZoo -> "kebun binatang"
+                else -> null
+            }
+            category?.let { searchViewModel.getDestinationsByCategory(it) }
         }
     }
 

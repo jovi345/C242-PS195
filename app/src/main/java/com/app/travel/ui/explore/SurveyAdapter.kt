@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.travel.R
 import com.app.travel.data.response.CategoryResponseItem
+import com.app.travel.data.response.SurveyResponseItem
 import com.app.travel.databinding.ItemRecomendationRowBinding
 import com.bumptech.glide.Glide
 
-class SurveyAdapter(private var items: List<CategoryResponseItem>,
+class SurveyAdapter(private var items: List<SurveyResponseItem>,
 private val onItemClick: (Int) -> Unit
 ) : RecyclerView.Adapter<SurveyAdapter.SurveyResultViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SurveyResultViewHolder {
@@ -23,13 +24,13 @@ private val onItemClick: (Int) -> Unit
 
     override fun getItemCount(): Int = items.size
 
-    fun updateData(newItems: List<CategoryResponseItem>) {
+    fun updateData(newItems: List<SurveyResponseItem>) {
         items = newItems
         notifyDataSetChanged()
     }
 
     inner class SurveyResultViewHolder(private val binding: ItemRecomendationRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CategoryResponseItem) {
+        fun bind(item: SurveyResponseItem) {
             binding.textViewTitle.text = item.placeName
             binding.textViewCity.text = item.city
             binding.textViewCategory.text = item.category

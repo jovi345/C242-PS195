@@ -56,6 +56,7 @@
     <string name="provinsi">Provinsi</string>
     <string name="welcome_back">Welcome back, %1$s!</string>
     <string name="welcome_home">Welcome %1$s!</string>
+    <string name="greeting_account">Hello %1$s!</string>
     <string name="wishlist">Wishlist Mu</string>
     <string name="based_location">Berdasarkan Lokasi</string>
     <string name="based_last_seen">Berdasarkan Riwayat</string>
@@ -88,9 +89,10 @@
     <string name="your_age">Your Age</string>
     <string name="travel_frequency">Travel Frequency</string>
     <string name="submit">Submit</string>
-    <string name="scroll_down_for_your_result">Scroll Down For Your Result</string>
+    <string name="submit_for_your_result">Submit For Your Result</string>
 
     <string-array name="mbti">
+        <item>Select MBTI</item>
         <item>INTJ</item>
         <item>INTP</item>
         <item>ENTJ</item>
@@ -111,6 +113,7 @@
 
 
     <string-array name="location_array">
+        <item>Select Location</item>
         <item>Medan</item>
         <item>Padang</item>
         <item>Batam</item>
@@ -121,8 +124,10 @@
     </string-array>
 
     <string-array name="category_array">
+        <item>Select Category</item>
         <item>Alam</item>
-        <item>Sejarah Budaya</item>
+        <item>Sejarah</item>
+        <item>Budaya</item>
         <item>Hiking Area</item>
         <item>Hotel</item>
         <item>Kebun Binatang</item>
@@ -135,12 +140,14 @@
     </string-array>
 
     <string-array name="travel_style_array">
+        <item>Select Travel Style</item>
         <item>Solo</item>
         <item>Family</item>
         <item>Partner</item>
     </string-array>
 
     <string-array name="travel_frequency_array">
+        <item>Select Frequency</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

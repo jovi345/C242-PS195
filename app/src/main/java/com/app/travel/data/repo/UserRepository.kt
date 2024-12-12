@@ -41,6 +41,12 @@ class UserRepository private constructor(
         }
     }
 
+    suspend fun getRecommendations(location: String): List<RecommendationResponse> {
+        return withContext(Dispatchers.IO) {
+            apiService.getRecommendations(location)
+        }
+    }
+
     suspend fun getRegion(city: String): List<RegionResponse> {
         return withContext(Dispatchers.IO) {
             apiService.getRegion(city)

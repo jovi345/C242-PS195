@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
         val repository = Injection.provideRepository(requireContext())
         homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 
+        observeSession()
         setupSpinner()
         setupRecyclerView()
 
@@ -73,6 +74,15 @@ class HomeFragment : Fragment() {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = arrayAdapter
 
+        // Sinkronisasi spinner dengan lokasi yang tersimpan di sesi
+        homeViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            val savedLocation = user.userLocation
+            val position = cities.indexOfFirst { it.equals(savedLocation, ignoreCase = true) }
+            if (position != -1) {
+                spinner.setSelection(position)
+            }
+        }
+
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (position != 0) {
@@ -82,9 +92,7 @@ class HomeFragment : Fragment() {
                 }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Tidak ada item yang dipilih
-            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
@@ -94,7 +102,7 @@ class HomeFragment : Fragment() {
             navigateToDetail(id)
         }
         binding.rvRecommendationsByLocation.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext()) // Default vertical orientation
             adapter = locationAdapter
         }
 
@@ -103,7 +111,7 @@ class HomeFragment : Fragment() {
             navigateToDetail(id)
         }
         binding.rvRecommendationsByHistory.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(requireContext()) // Default vertical orientation
             adapter = historyAdapter
         }
 
@@ -146,11 +154,11 @@ class HomeFragment : Fragment() {
         requireActivity().finish()
     }
 
-//    private fun observeRecommendations() {
-//        homeViewModel.recommendations.observe(viewLifecycleOwner) { recommendations ->
-//            println("Fragment received recommendations: $recommendations")
-//        }
-//    }
+    private fun observeRecommendations() {
+        homeViewModel.recommendations.observe(viewLifecycleOwner) { recommendations ->
+            println("Fragment received recommendations: $recommendations")
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -45,7 +45,6 @@ class RecommendationAdapter(
                     .into(imageView)
 
                 textViewTitle.text = recommendation.placeName
-//                textViewDescription.text = recommendation.description
                 textViewCity.text = recommendation.city
                 textViewCategory.text = recommendation.category
 

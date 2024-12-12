@@ -1,10 +1,12 @@
 package com.app.travel.data.response
 
-class SurveyRequest (
-    val mbti: String,
-    val location: String,
-    val preffered_category: String,
-    val travel_style: String,
-    val age: Int,
-    val travel_frequency: Int
+import com.google.gson.annotations.SerializedName
+
+data class SurveyRequest(
+    @SerializedName("mbti") val mbti: String,
+    @SerializedName("location") val location: String,
+    @SerializedName("preffered_category") val preferredCategory: String,
+    @SerializedName("travel_style") val travelStyle: String,
+    @SerializedName("age") val age: Int,
+    @SerializedName("travel_frequency") val travelFrequency: Int
 )

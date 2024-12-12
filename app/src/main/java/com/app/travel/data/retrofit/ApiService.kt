@@ -9,6 +9,8 @@ import com.app.travel.data.response.RecommendationResponse
 import com.app.travel.data.response.RegionResponse
 import com.app.travel.data.response.RegisterResponse
 import com.app.travel.data.response.SurveyRequest
+import com.app.travel.data.response.SurveyResponse
+import com.app.travel.data.response.SurveyResponseItem
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -70,6 +72,6 @@ interface ApiService {
     @POST("destination/survey-recommendation")
     suspend fun getSurveyRecommendations(
         @Body request: SurveyRequest
-    ) : List<CategoryResponseItem>
+    ) : List<SurveyResponseItem>
 }
 

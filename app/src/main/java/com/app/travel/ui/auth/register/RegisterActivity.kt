@@ -17,6 +17,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.app.travel.R
+import com.app.travel.data.pref.UserModel
 import com.app.travel.data.repo.Injection
 import com.app.travel.databinding.ActivityRegisterBinding
 import com.app.travel.databinding.LayoutRegisterBinding
@@ -27,6 +28,8 @@ import java.util.Locale
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var selectedCity: String
+    private var email: String = ""
+    private var username: String = ""
     private val registerViewModel: RegisterViewModel by viewModels {
         ViewModelFactory(Injection.provideRepository(this))
     }
@@ -85,11 +88,14 @@ class RegisterActivity : AppCompatActivity() {
 
         registerButton.setOnClickListener {
             val regisUname = findViewById<TextView>(R.id.regisUname)
-            val username = regisUname.text.toString().trim()
+            username = regisUname.text.toString().trim()
+
             val regisEmail = findViewById<TextView>(R.id.regisEmail)
-            val email = regisEmail.text.toString().trim()
+            email = regisEmail.text.toString().trim()
+
             val regisPass = findViewById<TextView>(R.id.regisPass)
             val password = regisPass.text.toString().trim()
+
             val regisConfirmPass = findViewById<TextView>(R.id.regisConfirmPass)
             val confirmPassword = regisConfirmPass.text.toString().trim()
 
@@ -97,6 +103,7 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
             registerViewModel.register(username, email, password, confirmPassword, selectedCity)
         }
     }
@@ -108,7 +115,17 @@ class RegisterActivity : AppCompatActivity() {
                 setMessage(message)
                 setPositiveButton("OK") { _, _ ->
                     if (message?.contains("success", true) == true) {
-                        finish() // Close Register Activity and return to Login
+                        // Simpan lokasi ke sesi setelah registrasi berhasil
+                        registerViewModel.saveSession(
+                            UserModel(
+                                email = email,
+                                username = username,
+                                userLocation = selectedCity,
+                                token = "",
+                                isLogin = true
+                            )
+                        )
+                        finish() // Close Register Activity dan kembali ke halaman Login
                     }
                 }
                 create()

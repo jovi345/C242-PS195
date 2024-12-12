@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.app.travel.data.pref.UserModel
 import com.app.travel.data.repo.UserRepository
 import com.app.travel.data.response.ErrorResponse
 import com.google.gson.Gson
@@ -35,4 +36,11 @@ class RegisterViewModel(private val repository: UserRepository) : ViewModel(){
             }
         }
     }
+
+    fun saveSession(user: UserModel) {
+        viewModelScope.launch {
+            repository.saveSession(user)
+        }
+    }
+
 }

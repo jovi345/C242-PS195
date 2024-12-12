@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         enableEdgeToEdge()
         val repository = Injection.provideRepository(this)
-        homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
+        homeViewModel =
+            ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 
         val navView: BottomNavigationView = binding.navView
 
@@ -41,58 +42,13 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_explore, R.id.navigation_search, R.id.navigation_account
+                R.id.navigation_home,
+                R.id.navigation_explore,
+                R.id.navigation_search,
+                R.id.navigation_account
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        navView.setOnItemSelectedListener { item ->
-            val navOptions = NavOptions.Builder()
-                .setEnterAnim(R.anim.nav_default_enter)
-                .setExitAnim(R.anim.nav_default_exit)
-                .setPopEnterAnim(R.anim.nav_default_popup_enter)
-                .setPopExitAnim(R.anim.nav_default_popup_exit)
-                .build()
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    navController.navigate(R.id.navigation_home, null, navOptions)
-                    true
-                }
-                R.id.navigation_explore -> {
-                    navController.navigate(R.id.navigation_explore, null, navOptions)
-                    true
-                }
-                R.id.navigation_search -> {
-                    navController.navigate(R.id.navigation_search, null, navOptions)
-                    true
-                }
-                R.id.navigation_account -> {
-                    navController.navigate(R.id.navigation_account, null, navOptions)
-                    true
-                }
-                else -> false
-            }
-        }
-        observeSession()
-    }
-
-    private fun observeSession() {
-        homeViewModel.getSession().observe(this) { user ->
-            if (!user.isLogin) {
-                navigateToWelcomeScreen()
-            } else {
-                Toast.makeText(
-                    this,
-                    getString(R.string.welcome_back, user.username),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
-    private fun navigateToWelcomeScreen() {
-        val intent = Intent(this, WelcomeActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }

@@ -10,6 +10,7 @@ import com.app.travel.ui.auth.login.LoginViewModel
 import com.app.travel.ui.auth.register.RegisterViewModel
 import com.app.travel.ui.destination.DestinationViewModel
 import com.app.travel.ui.detail.DetailViewModel
+import com.app.travel.ui.explore.ExploreViewModel
 import com.app.travel.ui.home.HomeViewModel
 import com.app.travel.ui.search.SearchViewModel
 
@@ -39,6 +40,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             modelClass.isAssignableFrom(DestinationViewModel::class.java) -> {
                 DestinationViewModel(repository) as T
             }
+//            modelClass.isAssignableFrom(ExploreViewModel::class.java) -> {
+//                ExploreViewModel(repository) as T
+//            }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

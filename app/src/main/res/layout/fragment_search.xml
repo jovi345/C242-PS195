@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchFragment">
@@ -25,61 +26,74 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnBeach"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupCategories"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/beach"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    android:padding="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="8dp"
+                    app:chipSpacingVertical="8dp">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnNatural"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/natural"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipBeach"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/beach"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnTouristDestination"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tourist_destination"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipNatural"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/natural"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnHistorical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/historical"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipTouristDestination"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tourist_destination"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnPark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/park"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipHistorical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/historical"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnHikingArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hiking_area"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/park"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnFamilyRecreation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/family_recreation"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipHikingArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hiking_area"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnZoo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/zoo"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFamilyRecreation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/family_recreation"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipZoo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zoo"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
 
             </LinearLayout>
         </HorizontalScrollView>

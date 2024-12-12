@@ -55,7 +55,6 @@ class AccountFragment : Fragment() {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
-            requireActivity().overridePendingTransition(R.transition.animation_enter, R.transition.animation_exit)
         }
 
         // Navigasi ke Wishlist
@@ -64,7 +63,7 @@ class AccountFragment : Fragment() {
             startActivity(intent)
         }
         homeViewModel.getSession().observe(viewLifecycleOwner) { user: UserModel ->
-            binding.welcomeText.text = getString(R.string.welcome_home, user.username)
+            binding.welcomeText.text = getString(R.string.greeting_account, user.username)
             binding.emailTextView.text = user.email
         }
 

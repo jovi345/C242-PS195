@@ -87,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this@LoginActivity).toBundle())
                         finish()
-                        overridePendingTransition(R.transition.animation_enter, R.transition.animation_exit)
                     }
                 }
                 create()

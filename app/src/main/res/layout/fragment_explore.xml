@@ -1,141 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.explore.ExploreFragment"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="12dp">
 
+        <!-- Title Text -->
         <TextView
+            android:id="@+id/text_preferences"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/fill_in_your_preferences"
-            android:textSize="20sp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
 
+        <!-- MBTI Spinner -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:text="@string/mbti"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinner_mbti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/mbti"
-            style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            style="@style/Widget.AppCompat.Spinner.Underlined" />
+
+        <!-- MBTI Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mbtiButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/click_here_to_check"
+            app:backgroundTint="@color/teal_700"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:text="@string/click_here_to_check"/>
+            android:layout_marginTop="4dp"
+            android:padding="8dp" />
 
+        <!-- Location Spinner -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/location"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinner_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/location_array"
-            style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            style="@style/Widget.AppCompat.Spinner.Underlined" />
 
+        <!-- Preferred Category Spinner -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/preferred_category"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinner_preferred_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/category_array"
-            style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            style="@style/Widget.AppCompat.Spinner.Underlined" />
 
+        <!-- Travel Style Spinner -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/travel_style"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinner_travel_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/travel_style_array"
-            style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            style="@style/Widget.AppCompat.Spinner.Underlined" />
 
+        <!-- Age EditText -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/age"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp" />
 
         <EditText
             android:id="@+id/editTextAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/your_age"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="8dp"
+            android:background="@android:color/white" />
 
+        <!-- Travel Frequency Spinner -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/travel_frequency"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp" />
 
         <Spinner
             android:id="@+id/spinner_travel_frequency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/travel_frequency_array"
-            style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            style="@style/Widget.AppCompat.Spinner.Underlined" />
 
+        <!-- Submit Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:text="@string/submit"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:text="@string/submit"/>
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:text="@string/scroll_down_for_your_result"
-            android:textAlignment="center"
-            />
+            app:backgroundTint="@color/teal_700"
+            android:padding="8dp"
+            android:layout_marginTop="8dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <!-- TextView Scroll Prompt -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/scroll_prompt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerView"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            tools:listitem="@layout/item_recomendation_row" />
+            android:text="@string/submit_for_your_result"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center" />
+
     </LinearLayout>
+
 </ScrollView>

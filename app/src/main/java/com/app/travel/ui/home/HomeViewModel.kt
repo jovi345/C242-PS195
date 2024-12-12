@@ -17,6 +17,9 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
     private val _recommendationsByLocation = MutableLiveData<List<RecommendationResponse?>>()
     val recommendationsByLocation: LiveData<List<RecommendationResponse?>> = _recommendationsByLocation
 
+    private val _recommendations = MutableLiveData<List<RecommendationResponse>>()
+    val recommendations: LiveData<List<RecommendationResponse>> = _recommendations
+
     private val _recommendationsByHistory = MutableLiveData<List<RecommendationResponse?>>()
     val recommendationsByHistory: LiveData<List<RecommendationResponse?>> = _recommendationsByHistory
 
@@ -27,6 +30,17 @@ class HomeViewModel(private val repository: UserRepository) : ViewModel() {
                 _recommendationsByLocation.postValue(response)
             } catch (e: Exception) {
                 e.printStackTrace()
+            }
+        }
+    }
+
+    fun getRecommendationsByLocation() {
+        viewModelScope.launch {
+            repository.getSession().collect { user ->
+                if (user.isLogin) {
+                    val response = repository.getRecommendations(user.userLocation)
+                    _recommendations.postValue(response)
+                }
             }
         }
     }
