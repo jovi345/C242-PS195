@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,7 +31,7 @@ class ExploreFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentExploreBinding.inflate(inflater, container, false)
 
-
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
         binding.mbtiButton.setOnClickListener {
             val url = "https://www.16personalities.com/free-personality-test"
             val intent = Intent(Intent.ACTION_VIEW)

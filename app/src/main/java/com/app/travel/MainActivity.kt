@@ -1,29 +1,38 @@
 package com.app.travel
 
-import android.os.Build
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsets
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.app.travel.data.repo.Injection
 import com.app.travel.databinding.ActivityMainBinding
+import com.app.travel.ui.ViewModelFactory
+import com.app.travel.ui.home.HomeViewModel
+import com.app.travel.ui.welcome.WelcomeActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        val repository = Injection.provideRepository(this)
+        homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 
         val navView: BottomNavigationView = binding.navView
 
@@ -65,5 +74,25 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        observeSession()
+    }
+
+    private fun observeSession() {
+        homeViewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                navigateToWelcomeScreen()
+            } else {
+                Toast.makeText(
+                    this,
+                    getString(R.string.welcome_back, user.username),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+    private fun navigateToWelcomeScreen() {
+        val intent = Intent(this, WelcomeActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

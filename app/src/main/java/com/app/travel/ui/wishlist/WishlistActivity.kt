@@ -20,7 +20,7 @@ class WishlistActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWishlistBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.hide()
         adapter = RecommendationAdapter(emptyList()) { id ->
             val intent = Intent(this, DetailActivity::class.java)
             intent.putExtra("PLACE_ID", id)

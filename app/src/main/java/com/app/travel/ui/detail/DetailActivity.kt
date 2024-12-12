@@ -37,6 +37,7 @@ class DetailActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
         val viewModel: WishlistViewModel by viewModels()
 
         detailViewModel.logToken()

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
         val repository = Injection.provideRepository(requireContext())
         searchViewModel = ViewModelProvider(this, ViewModelFactory(repository))[SearchViewModel::class.java]
 
@@ -36,6 +37,7 @@ class SearchFragment : Fragment() {
         setupSearchView()
 
         return binding.root
+
     }
 
     private fun setupCategory() {

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +37,7 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
-
+        (activity as? AppCompatActivity)?.supportActionBar?.hide()
         val repository = Injection.provideRepository(requireContext())
         homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 
