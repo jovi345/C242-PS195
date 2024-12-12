@@ -296,6 +296,49 @@
 }
 ```
 
+### 8. Grouping by Region
+
+#### Request
+
+| **Method** | **GET**               |
+| :--------- | :-------------------- |
+| `Endpoint` | `/api/city/{cityTag}` |
+
+#### Example
+
+{{baseUrl}}/api/city/jakarta
+
+#### Response
+
+| **Status Code** | **Description**           | **Response Body**                                                  |
+| --------------- | ------------------------- | ------------------------------------------------------------------ |
+| 200             | Data fetched successfully | See example below                                                  |
+| 400             | Bad request               | {"status": "failed","message": "No place was found with that ID" } |
+
+##### Response Example
+
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 4,
+      "name": "Jakarta",
+      "tag": "jakarta",
+      "url": "https://storage.googleapis.com/travelease-bucket/city/jakarta.jpeg",
+      "region": 3
+    },
+    {
+      "id": 7,
+      "name": "Yogyakarta",
+      "tag": "yogyakarta",
+      "url": "https://storage.googleapis.com/travelease-bucket/city/yogyakarta.jpeg",
+      "region": 3
+    }
+  ]
+}
+```
+
 ## Cloud Architecture
 
 ![hotrip architecture drawio (6)](https://github.com/user-attachments/assets/051882ee-3d5a-4981-91c9-3ea2eb106b96)
