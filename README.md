@@ -1,1 +1,1 @@
-# YOUR TRAVEL HOTRIP ASSISTANT 
+# Hotrip - Horas Trip App - Mobile Development

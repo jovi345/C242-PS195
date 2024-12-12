@@ -35,7 +35,7 @@
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.app.travel.custom.MyEmail
                 android:id="@+id/regisEmail"
                 style="@style/modifiedEditText"
                 android:inputType="textEmailAddress"
@@ -47,7 +47,7 @@
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.app.travel.custom.MyPassword
                 android:id="@+id/regisPass"
                 style="@style/modifiedEditText"
                 android:hint="@string/password"
@@ -59,7 +59,7 @@
             style="@style/parent"
             android:layout_marginTop="@dimen/signup_text_margin_top">
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.app.travel.custom.MyPassword
                 android:id="@+id/regisConfirmPass"
                 style="@style/modifiedEditText"
                 android:hint="@string/confirm_password"
