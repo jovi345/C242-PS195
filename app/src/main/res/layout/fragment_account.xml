@@ -85,7 +85,6 @@
             android:layout_marginTop="10dp"
             android:padding="12dp"
             android:text="@string/logout"
-            android:textColor="?attr/colorOnBackground"
             app:icon="@drawable/baseline_logout_24"
             app:iconTint="?attr/colorOnBackground"
             app:iconGravity="textStart"

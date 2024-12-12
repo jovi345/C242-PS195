@@ -1,5 +1,6 @@
 package com.app.travel.ui.account
 
+import android.os.Build
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,16 +14,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.app.travel.R
 import com.app.travel.data.pref.UserModel
-import com.app.travel.data.pref.dataStore
 import com.app.travel.data.repo.Injection
-import com.app.travel.data.repo.UserRepository
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.app.travel.databinding.FragmentAccountBinding
 import com.app.travel.ui.ViewModelFactory
 import com.app.travel.ui.auth.login.LoginActivity
 import com.app.travel.ui.auth.login.LoginViewModel
 import com.app.travel.ui.home.HomeViewModel
 import com.app.travel.ui.wishlist.WishlistActivity
-import com.google.android.material.switchmaterial.SwitchMaterial
 
 class AccountFragment : Fragment() {
 
@@ -38,6 +38,11 @@ class AccountFragment : Fragment() {
     ): View {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
+            val controller = WindowInsetsControllerCompat(requireActivity().window, binding.root)
+            controller.isAppearanceLightStatusBars = true
+        }
         val repository = Injection.provideRepository(requireContext())
         homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 

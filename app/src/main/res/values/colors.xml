@@ -31,5 +31,5 @@
 
     <!--colros for card-->
     <color name="whiteCardColor">#fff</color>
-
+    <color name="cyan">#00BFA5</color>
 </resources>
