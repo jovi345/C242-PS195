@@ -22,7 +22,7 @@
             android:id="@+id/textInputEmail"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin">
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.app.travel.custom.MyEmail
             android:id="@+id/editTextEmail"
             style="@style/modifiedEditText"
             android:inputType="textEmailAddress"
@@ -34,12 +34,13 @@
             android:id="@+id/textInputPassword"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin">
-            <androidx.appcompat.widget.AppCompatEditText
+            <com.app.travel.custom.MyPassword
                 android:id="@+id/editTextPassword"
                 style="@style/modifiedEditText"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:hint="@string/password"/>
+                android:hint="@string/password"
+                />
         </com.google.android.material.textfield.TextInputLayout>
         
         <Button
