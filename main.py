@@ -53,12 +53,12 @@ def recommendPlaceByLocation(location):
 
     location_to_ids = {
         "jakarta": [random.randint(1, 50)],
-        "bali": [random.randint(1, 181)],
-        "medan": [random.randint(1, 53)],
-        "padang": [random.randint(1, 29)],
-        "batam": [random.randint(1, 68)],
-        "yogyakarta": [random.randint(1, 100)],
-        "lombok": [random.randint(1, 168)],
+        "bali": [random.randint(294, 474)],
+        "medan": [random.randint(50, 71)],
+        "padang": [random.randint(78, 100)],
+        "batam": [random.randint(232, 293)],
+        "yogyakarta": [random.randint(475, 574)],
+        "lombok": [random.randint(102, 230)],
     }
 
     ids = location_to_ids.get(location, [])
