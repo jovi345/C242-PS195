@@ -38,12 +38,14 @@ def recommendPlaceBySurveyResult(user_data):
 
     user_vectors = model.predict(encoded_df)
 
+    preffered_category = user_data["preffered_category"].lower().replace(" ", "_")
+    category_mapping = {"sejarah": "sejarah_budaya", "budaya": "budaya_sejarah"}
+    preffered_category = category_mapping.get(preffered_category, preffered_category)
+
     new_user_data = {
         "mbti": [user_data["mbti"]],
         "location": [user_data["location"]],
-        "preffered_category": [
-            user_data["preffered_category"].lower().replace(" ", "_")
-        ],
+        "preffered_category": [preffered_category],
         "travel_style": [user_data["travel_style"]],
         "age": [int(user_data["age"])],
         "travel_frequency": [int(user_data["travel_frequency"])],
