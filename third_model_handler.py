@@ -41,7 +41,9 @@ def recommendPlaceBySurveyResult(user_data):
     new_user_data = {
         "mbti": [user_data["mbti"]],
         "location": [user_data["location"]],
-        "preffered_category": [user_data["preffered_category"]],
+        "preffered_category": [
+            user_data["preffered_category"].lower().replace(" ", "_")
+        ],
         "travel_style": [user_data["travel_style"]],
         "age": [int(user_data["age"])],
         "travel_frequency": [int(user_data["travel_frequency"])],
