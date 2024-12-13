@@ -3,7 +3,7 @@
 ## Bangkit Capstone Project 2024H2
 
 ## Description
-Creating RESTful APIs and deploying to Google Cloud Platform by using Cloud run for the API Services and Google Compute Engine for installing MySQL. We use compute Engine for database because its more cost effective
+Creating REST APIs and deploying to Google Cloud Platform by using Cloud run for the API Services and Google Compute Engine for installing MySQL. We use compute Engine for database because it is more cost effective
 
 ## RESTful APIs
 In making the RESTful APIs we use Javascript using the Hapi Js and for responses using JSON format.
