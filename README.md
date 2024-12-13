@@ -73,3 +73,10 @@ Tourism is one of Indonesia's leading sectors, continuously evolving thanks to t
     1. Choose the 2nd navigation icon (called Explore)
     2. Fill your data, such as MBTI Type, Location, Preferred Category, Travevl Style, Age, adn Travel Frequency
     3. Submit and see the result
+
+## API Documentation
+
+For API Documentation, see the following links:
+
+- [Model REST APIs](https://github.com/jovi345/C242-PS195/blob/cc-py/README.md#api-documentation)
+- [User & Destination REST APIs](https://github.com/jovi345/C242-PS195/blob/cloud-computing/README.md#api-documentation)
