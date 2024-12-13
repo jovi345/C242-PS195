@@ -4,6 +4,9 @@
 
 Bangkit Capstone Team ID: C242-PS195
 
+## Description
+Creating REST APIs and deploying to Google Cloud Platform by using Cloud Run for the API Services and Google Compute Engine for installing MySQL. We use compute Engine for database because it is more cost effective. In making the REST APIs we use Python using the Flask Framework and for responses using JSON format.
+
 ## API Documentation
 
 ### 1. Recommendation by Searching Place Name
