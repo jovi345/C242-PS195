@@ -30,8 +30,6 @@ Tourism is one of Indonesia's leading sectors, continuously evolving thanks to t
 | machine-learning   | [ML Branch](https://github.com/jovi345/C242-PS195/tree/machine-learning)     | Provides machine learning models and datasets              |
 | mobile-development | [MD Branch](https://github.com/jovi345/C242-PS195/tree/mobile-development)   | Implements the mobile development features for the project |
 
-## App Overview
-
 ## Tech Stack
 
 ![tech-stack drawio (1)](https://github.com/user-attachments/assets/f4bce969-aa65-489d-85f4-41a13b7c0d59)
