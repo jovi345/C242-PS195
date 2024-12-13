@@ -58,8 +58,8 @@
     <string name="welcome_home">Welcome %1$s!</string>
     <string name="greeting_account">Hello %1$s!</string>
     <string name="wishlist">Wishlist Mu</string>
-    <string name="based_location">Berdasarkan Lokasi</string>
-    <string name="based_last_seen">Berdasarkan Riwayat</string>
+    <string name="based_location">BASED ON THE SELECTED LOCATION</string>
+    <string name="based_last_seen">RELATED PLACES</string>
     <string name="beach">Beach</string>
     <string name="natural">Natural</string>
     <string name="tourist_destination">Tourist destination</string>
