@@ -62,7 +62,7 @@ class ExploreFragment : Fragment() {
 
     private fun setupSpinner(spinner: Spinner, arrayResId: Int, defaultPosition: Int = 0) {
         val items = resources.getStringArray(arrayResId).toList()
-        val arrayAdapter = object : ArrayAdapter<String>(
+        val arrayAdapter = object : CustomArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_item,
             items

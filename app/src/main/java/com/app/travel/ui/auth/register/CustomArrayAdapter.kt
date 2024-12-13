@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 
-class CustomArrayAdapter(context: Context, resource: Int, objects: List<String>) :
+open class CustomArrayAdapter(context: Context, resource: Int, objects: List<String>) :
     ArrayAdapter<String>(context, resource, objects) {
 
     override fun isEnabled(position: Int): Boolean {
