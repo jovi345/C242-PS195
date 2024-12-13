@@ -39,8 +39,6 @@ class ExploreFragment : Fragment() {
     ): View? {
         binding = FragmentExploreBinding.inflate(inflater, container, false)
 
-        setupRecyclerView()
-
         observeViewModel()
 
         setupSpinner(binding.spinnerMbti, R.array.mbti)
@@ -95,8 +93,7 @@ class ExploreFragment : Fragment() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (position == defaultPosition) {
-                    // Tidak ada aksi untuk pilihan default
-                    spinner.setSelection(defaultPosition) // Tetap pada default jika dipilih
+                    spinner.setSelection(defaultPosition)
                 } else {
                     val selectedItem = parent.getItemAtPosition(position).toString()
                     Log.d("SpinnerSelection", "Selected item: $selectedItem")
@@ -115,8 +112,10 @@ class ExploreFragment : Fragment() {
         val age = binding.editTextAge.text.toString().toIntOrNull()
         val travelFrequency = binding.spinnerTravelFrequency.selectedItem.toString().toIntOrNull()
 
-        if (mbti == "Select MBTI" || location == "Select Location" ||
-            category == "Select Category" || travelStyle == "Select Travel Style" ||
+        if (binding.spinnerMbti.selectedItemPosition == 0 ||
+            binding.spinnerLocation.selectedItemPosition == 0 ||
+            binding.spinnerPreferredCategory.selectedItemPosition == 0 ||
+            binding.spinnerTravelStyle.selectedItemPosition == 0 ||
             age == null || age <= 0 || travelFrequency == null) {
             Toast.makeText(requireContext(), "Fill in all fields correctly", Toast.LENGTH_SHORT).show()
             return
@@ -127,8 +126,8 @@ class ExploreFragment : Fragment() {
             location = location.lowercase(),
             preferredCategory = category.lowercase(),
             travelStyle = travelStyle.lowercase(),
-            age = age,
-            travelFrequency = travelFrequency
+            age = age.toString(),
+            travelFrequency = travelFrequency.toString()
         )
 
         exploreViewModel.submitSurvey(request)
@@ -156,11 +155,7 @@ class ExploreFragment : Fragment() {
                 }
             }
         }
-//        lifecycleScope.launch {
-//            exploreViewModel.loading.collect { isLoading ->
-//                binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-//            }
-//        }
+
         lifecycleScope.launch {
             exploreViewModel.errorMessage.collect { errorMessage ->
                 errorMessage?.let {
@@ -168,18 +163,5 @@ class ExploreFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun setupRecyclerView() {
-        resultAdapter = SurveyAdapter(emptyList()) { id ->
-            navigateToDetail(id)
-        }
-
-    }
-
-    private fun navigateToDetail(placeId: Int) {
-        val intent = Intent(requireContext(), DetailActivity::class.java)
-        intent.putExtra("PLACE_ID", placeId)
-        startActivity(intent)
     }
 }

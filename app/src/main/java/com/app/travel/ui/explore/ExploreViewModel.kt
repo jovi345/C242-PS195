@@ -28,7 +28,7 @@ class ExploreViewModel : ViewModel() {
             try {
                 val apiService = ApiConfig.getRecommendationService()
                 val response = apiService.getSurveyRecommendations(request)
-                _surveyResults.value = response // Respons langsung berupa List<SurveyResponseItem>
+                _surveyResults.value = response
             } catch (e: Exception) {
                 _errorMessage.value = "Failed to submit survey: ${e.message}"
             } finally {

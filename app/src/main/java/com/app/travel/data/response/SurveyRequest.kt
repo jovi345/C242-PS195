@@ -7,6 +7,7 @@ data class SurveyRequest(
     @SerializedName("location") val location: String,
     @SerializedName("preffered_category") val preferredCategory: String,
     @SerializedName("travel_style") val travelStyle: String,
-    @SerializedName("age") val age: Int,
-    @SerializedName("travel_frequency") val travelFrequency: Int
+    @SerializedName("age") val age: String,
+    @SerializedName("travel_frequency") val travelFrequency: String
 )
+

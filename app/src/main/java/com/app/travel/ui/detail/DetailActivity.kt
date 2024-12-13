@@ -3,14 +3,18 @@ package com.app.travel.ui.detail
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.text.HtmlCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
 import com.app.travel.R
 import com.app.travel.data.database.Wishlist
@@ -37,12 +41,22 @@ class DetailActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide()
-        val viewModel: WishlistViewModel by viewModels()
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val controller = WindowInsetsControllerCompat(window, binding.root)
+        controller.hide(WindowInsetsCompat.Type.statusBars())
+        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+
+        supportActionBar?.hide()
+
+        val viewModel: WishlistViewModel by viewModels()
         detailViewModel.logToken()
 
-        id = intent.getStringExtra("PLACE_ID") ?: return
+        id = intent.getStringExtra("PLACE_ID") ?: run {
+            Toast.makeText(this, "Invalid place ID", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
 
         lifecycleScope.launch {
             detailViewModel.getSession().collect { userModel ->
@@ -51,7 +65,6 @@ class DetailActivity() : AppCompatActivity() {
             }
         }
 
-        // Cek jika tempat ini sudah ada di wishlist
         viewModel.allWishlist.observe(this) { wishlist ->
             isInWishlist = wishlist.any { it.id == id }
             binding.fabFavorite.setImageResource(
@@ -94,18 +107,24 @@ class DetailActivity() : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        detailViewModel.placeDetail.observe(this) { placeDetail ->
-            binding.nameTextView.text = placeDetail.place_name
-            binding.provinsiTextView.text = placeDetail.state
-            binding.kotaTextView.text = placeDetail.city
-            binding.ratingTextView.text = placeDetail.rating.toString()
-            binding.categoryTextView.text = placeDetail.category
-            binding.descTextView.text = HtmlCompat.fromHtml(placeDetail.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        detailViewModel.isLoading.observe(this) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
 
-            Glide.with(this)
-                .load(placeDetail.image_url)
-                .error(R.drawable.example_image)
-                .into(binding.previewImageView)
+        detailViewModel.placeDetail.observe(this) { placeDetail ->
+            placeDetail?.let {
+                binding.nameTextView.text = it.place_name
+                binding.provinsiTextView.text = it.state
+                binding.kotaTextView.text = it.city
+                binding.ratingTextView.text = it.rating.toString()
+                binding.categoryTextView.text = it.category
+                binding.descTextView.text = HtmlCompat.fromHtml(it.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+                Glide.with(this)
+                    .load(it.image_url)
+                    .error(R.drawable.example_image)
+                    .into(binding.previewImageView)
+            } ?: Toast.makeText(this, "Place detail not found", Toast.LENGTH_SHORT).show()
         }
     }
 }

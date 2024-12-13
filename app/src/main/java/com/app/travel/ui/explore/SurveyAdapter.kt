@@ -10,9 +10,11 @@ import com.app.travel.data.response.SurveyResponseItem
 import com.app.travel.databinding.ItemRecomendationRowBinding
 import com.bumptech.glide.Glide
 
-class SurveyAdapter(private var items: List<SurveyResponseItem>,
-private val onItemClick: (Int) -> Unit
+class SurveyAdapter(
+    private var items: List<SurveyResponseItem>,
+    private val onItemClick: (SurveyResponseItem) -> Unit
 ) : RecyclerView.Adapter<SurveyAdapter.SurveyResultViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SurveyResultViewHolder {
         val binding = ItemRecomendationRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SurveyResultViewHolder(binding)
@@ -39,7 +41,7 @@ private val onItemClick: (Int) -> Unit
                 .into(binding.imageView)
 
             binding.root.setOnClickListener {
-                item.id?.let { id -> onItemClick(id) }
+                onItemClick(item)
             }
         }
     }
