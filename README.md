@@ -339,6 +339,33 @@
 }
 ```
 
+## API Installation Guide
+
+User & Destination API
+
+```bash
+git clone -b cloud-computing https://github.com/jovi345/C242-PS195.git user-destination-api
+cd user-destination-api
+npm install
+```
+
+Create .env file
+
+```bash
+JWT_SECRET_KEY=<input_random_key>
+HOST=<your_db_url>
+USERNAME=<your_db_username>
+PASSWORD=<your_db_password>
+DATABASE=<your_db_name>
+TARGET_URL=<url_from_running_the_model_api (localhost:8080)>
+```
+
+Run the server on port :8081 (Kindly change the port to 8081 on server.js)
+
+```bash
+npm run start
+```
+
 ## Cloud Architecture
 
 ![hotrip architecture drawio (6)](https://github.com/user-attachments/assets/051882ee-3d5a-4981-91c9-3ea2eb106b96)
