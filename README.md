@@ -35,3 +35,41 @@ Tourism is one of Indonesia's leading sectors, continuously evolving thanks to t
 ## Tech Stack
 
 ![tech-stack drawio (1)](https://github.com/user-attachments/assets/f4bce969-aa65-489d-85f4-41a13b7c0d59)
+
+## Getting Started
+
+- ### Pre Requisite
+
+  1. Android
+  2. Internet Connection
+
+- ### Installation
+
+  1. Download the APK
+  2. Install the APK
+     <br>
+     [APK Link](https://github.com/jovi345/C242-PS195/releases/download/Final/Hotrip.Final.apk)
+
+- ### Register
+
+  1. Open the App
+  2. Register account with email address
+
+- ### Usage
+
+  - Find the recommendations based on the current location
+
+    1.  Login to your account
+    2.  Set up or choose your desired location
+    3.  Hotrip will recommend you the destinations
+
+  - Find the recommendations based on the destination you have seen
+
+    1. Pick one of the destinations you prefer
+    2. Go back to home page
+    3. Scroll to the "RELATED PLACES" section
+
+  - Find the recommendation based on your survey result
+    1. Choose the 2nd navigation icon (called Explore)
+    2. Fill your data, such as MBTI Type, Location, Preferred Category, Travevl Style, Age, adn Travel Frequency
+    3. Submit and see the result
