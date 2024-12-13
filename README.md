@@ -6,7 +6,7 @@
 Using the [Kotlin programming language](https://kotlinlang.org/) to develop applications. Using [Retrofit](https://square.github.io/retrofit/) to handle all things related to data connection from android to the internet.
 
 # Design
-![Design prototype app](https://app.uizard.io/p/1ca84dc5)
+[Design prototype app](https://app.uizard.io/p/1ca84dc5)
 
 # Preview App
 
