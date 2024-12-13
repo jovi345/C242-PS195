@@ -36,9 +36,7 @@ class WelcomeActivity : AppCompatActivity() {
                     finish()
                 } else {
                     // User is not logged in, redirect to login screen
-                    val intent = Intent(this@WelcomeActivity, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
+
                 }
             }
         }

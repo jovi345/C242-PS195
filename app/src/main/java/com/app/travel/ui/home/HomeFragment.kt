@@ -37,7 +37,6 @@ class HomeFragment : Fragment() {
         val repository = Injection.provideRepository(requireContext())
         homeViewModel = ViewModelProvider(this, ViewModelFactory(repository))[HomeViewModel::class.java]
 
-        observeSession()
         setupSpinner()
         setupRecyclerView()
 

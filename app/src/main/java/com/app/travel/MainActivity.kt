@@ -50,5 +50,26 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        observeSession()
+    }
+
+    private fun observeSession() {
+        homeViewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                navigateToWelcomeScreen()
+            } else {
+                Toast.makeText(
+                    this,
+                    getString(R.string.welcome_back, user.username),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+    private fun navigateToWelcomeScreen() {
+        val intent = Intent(this, WelcomeActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
