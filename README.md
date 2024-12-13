@@ -150,3 +150,30 @@ Bangkit Capstone Team ID: C242-PS195
   }
 ]
 ```
+
+## API Installation Guide
+
+Model API
+
+```bash
+git clone -b cc-py https://github.com/jovi345/C242-PS195.git model-api
+cd model-api
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Create .env file
+
+```bash
+DB_HOST=<your_db_host>
+DB_USERNAME=<your_db_username>
+DB_PASSWORD=<your_db_password>
+DATABASE=<your_db_name>
+```
+
+Run the server on port :8080
+
+```bash
+python3 main.py
+```
